@@ -1,0 +1,71 @@
+# depslib dependency file v1.0
+1417624923 source:c:\users\nax\documents\github\quarto_projet\main.cpp
+	"general.h"
+
+1417614849 c:\users\nax\documents\github\quarto_projet\include\piece.h
+	"general.h"
+
+1417625325 c:\users\nax\documents\github\quarto_projet\include\affichage.h
+	"general.h"
+
+1417624826 source:c:\users\nax\documents\github\quarto_projet\src\affichage.cpp
+	"general.h"
+
+1417621886 source:c:\users\nax\documents\github\quarto_projet\src\piece.cpp
+	"general.h"
+
+1417624124 c:\users\nax\documents\github\quarto_projet\include\general.h
+	<iostream>
+	<string>
+	<vector>
+	<cmath>
+	"board.h"
+	"Piece.h"
+	"affichage.h"
+
+1417614884 c:\users\nax\documents\github\quarto_projet\include\board.h
+	"general.h"
+	"Piece.h"
+
+1417620335 source:c:\users\nax\documents\github\quarto_projet\src\board.cpp
+	"general.h"
+	"Piece.h"
+	<cmath>
+
+1417603938 source:c:\users\jacques pich\documents\github\quarto_projet\main.cpp
+	"general.h"
+
+1417603898 c:\users\jacques pich\documents\github\quarto_projet\include\general.h
+	<iostream>
+	<string>
+	<vector>
+	"board.h"
+	"Piece.h"
+	"affichage.h"
+
+1417604048 c:\users\jacques pich\documents\github\quarto_projet\include\board.h
+	"Piece.h"
+
+1417603938 c:\users\jacques pich\documents\github\quarto_projet\include\piece.h
+	"board.h"
+	"Piece.h"
+
+1417603938 c:\users\jacques pich\documents\github\quarto_projet\include\affichage.h
+	"general.h"
+
+1417603938 source:c:\users\jacques pich\documents\github\quarto_projet\src\affichage.cpp
+	"general.h"
+
+1417603938 source:c:\users\jacques pich\documents\github\quarto_projet\src\board.cpp
+	"general.h"
+	"Piece.h"
+	<cmath>
+
+1417603938 source:c:\users\jacques pich\documents\github\quarto_projet\src\piece.cpp
+	"general.h"
+
+1417622954 source:c:\users\nax\documents\github\quarto_projet\src\iaffichage.cpp
+	"IAffichage.h"
+
+1417624136 c:\users\nax\documents\github\quarto_projet\include\iaffichage.h
+
