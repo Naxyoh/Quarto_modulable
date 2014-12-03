@@ -10,6 +10,7 @@
 #include "Piece.h"
 #include "affichage.h"
 //#include "IAffichage.h"
+#include "Controleur.h"
 
 
 #endif // GENERAL_H_INCLUDED

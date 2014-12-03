@@ -2,12 +2,13 @@
 
 using namespace std;
 
-void AffichageConsole::drawPieceAt(board myBoard, int position)
+void AffichageConsole::drawPieceAt(board &myBoard, int position)
 {
+    Piece pieceAAfficher = myBoard.getListePieceBoard()[position];
 
 }
 
-void AffichageConsole::drawBoard(board monPlateau )
+void AffichageConsole::drawBoard(board &monPlateau )
 {
     for (size_t i =0; i<monPlateau.getListePieceBoard().size(); i++)
     {
@@ -17,6 +18,14 @@ void AffichageConsole::drawBoard(board monPlateau )
         afficherPiece(monPlateau.getListePieceBoard()[i]);
         cout<<"|";
         if(i==15) cout<<"\n+-------------------------------------------------------------------------------+\n";
+    }
+
+    cout<<"\n\nPiece Jouable : \n";
+    for(size_t j = 0; j<monPlateau.getListePieceJouable().size(); j++)
+    {
+        cout<<j+1<<") ";
+        afficherPiece(monPlateau.getListePieceJouable()[j]);
+        cout<<"\n";
     }
 }
 

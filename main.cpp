@@ -4,34 +4,23 @@ using namespace std;
 
 int main()
 {
-    //Essai création piece
-    /*Piece piece2 = Piece(noir, grand, carre, creux);
-    Piece piece1 = Piece();
-
-    afficherpiece(piece1);
-    afficherpiece(piece2);*/
-
-    //Essai affichage liste piece
-    /*vector<Piece> listePiece = creerToutePiece();
-    afficherListePiece(listePiece);
-    cout<<"\n";*/
-
     board monPlateau = board();
     AffichageConsole affich;
+    ControleurConsole control;
 
-    affich.drawBoard(monPlateau);
-
-   /* while(monPlateau.isQuarto() != true)
+    /*affich.drawBoard(monPlateau);
+    Piece piece = Piece(noir, petit, carre, creux);
+    monPlateau.setListePieceBoard(piece, 2);
+    cout<<"\n\n";
+    affich.drawBoard(monPlateau);*/
+    while(monPlateau.isQuarto() != true)
     {
-        //affich.afficherPieceBoard(monPlateau);
-        //monPlateau.deplacerPiece();
-        int position = -1;
-        cout<<"Quelle position ?\n";
-        cin>>position;
-        affich.drawPieceAt(monPlateau, position);
+        Piece pieceSelectionne = Piece();
         affich.drawBoard(monPlateau);
-    }*/
-    //affich.afficherPieceBoard(monPlateau);
+        pieceSelectionne = control.selectionnerPiece(monPlateau);
+        control.jouerPiece(monPlateau, pieceSelectionne);
+    }
+    affich.drawBoard(monPlateau);
     cout<<"Quarto !\n";
     return 0;
 }

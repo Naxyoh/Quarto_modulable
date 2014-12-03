@@ -7,8 +7,8 @@
 class IAffichage
 {
     public:
-        virtual void drawPieceAt(board, int) = 0;
-        virtual void drawBoard(board) = 0;
+        virtual void drawPieceAt(board&, int) = 0;
+        virtual void drawBoard(board&) = 0;
     protected:
     private:
 };
@@ -16,8 +16,8 @@ class IAffichage
 class AffichageConsole : public IAffichage
 {
     public:
-        virtual void drawPieceAt(board, int);
-        virtual void drawBoard(board);
+        virtual void drawPieceAt(board&, int);
+        virtual void drawBoard(board&);
         void afficherPiece(Piece const& );
         void afficherListePiece(std::vector<Piece> const& );
         void afficherPieceBoard(board );

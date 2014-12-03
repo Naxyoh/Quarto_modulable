@@ -23,6 +23,11 @@ std::vector<Piece> board::getListePieceBoard()
     return m_listePieceBoard;
 }
 
+void board::setListePieceBoard(Piece pieceAAjouter, int pos)
+{
+    m_listePieceBoard[pos] = pieceAAjouter;
+}
+
 int board::getSizeBoard()
 {
     return m_sizeBoard;

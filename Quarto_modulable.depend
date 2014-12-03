@@ -1,0 +1,41 @@
+# depslib dependency file v1.0
+1417621886 source:c:\users\nax\documents\github\quarto_modulable\src\piece.cpp
+	"general.h"
+
+1417628801 c:\users\nax\documents\github\quarto_modulable\include\general.h
+	<iostream>
+	<string>
+	<vector>
+	<cmath>
+	"board.h"
+	"Piece.h"
+	"affichage.h"
+	"Controleur.h"
+
+1417626375 c:\users\nax\documents\github\quarto_modulable\include\board.h
+	"general.h"
+	"Piece.h"
+
+1417614849 c:\users\nax\documents\github\quarto_modulable\include\piece.h
+	"general.h"
+
+1417630787 c:\users\nax\documents\github\quarto_modulable\include\affichage.h
+	"general.h"
+
+1417631781 source:c:\users\nax\documents\github\quarto_modulable\main.cpp
+	"general.h"
+
+1417630787 source:c:\users\nax\documents\github\quarto_modulable\src\affichage.cpp
+	"general.h"
+
+1417626548 source:c:\users\nax\documents\github\quarto_modulable\src\board.cpp
+	"general.h"
+	"Piece.h"
+	<cmath>
+
+1417631769 source:c:\users\nax\documents\github\quarto_modulable\src\controleur.cpp
+	"general.h"
+
+1417630487 c:\users\nax\documents\github\quarto_modulable\include\controleur.h
+	"general.h"
+

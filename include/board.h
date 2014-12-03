@@ -12,6 +12,7 @@ class board
 
         int getSizeBoard();
         std::vector<Piece> getListePieceBoard();
+        void setListePieceBoard(Piece, int);
         std::vector<Piece> getListePieceJouable();
 
         bool isQuartoCouleur();
