@@ -12,7 +12,6 @@ Piece ControleurConsole::selectionnerPiece(board &myBoard)
 
     Piece pieceSelectionne = myBoard.getListePieceJouable()[position-1];
     std::cout<<"Vous avez selectionne "<<convertPieceToString(pieceSelectionne)<<std::endl;
-    myBoard.getListePieceJouable().erase(myBoard.getListePieceJouable().begin()+position-1);
     return pieceSelectionne;
 }
 
@@ -27,7 +26,5 @@ void ControleurConsole::jouerPiece(board &myBoard, Piece pieceAJouer)
     } while(pos<1 || pos>16 || (myBoard.getListePieceBoard()[pos-1] != Piece()));
 
     myBoard.setListePieceBoard(pieceAJouer, pos-1);
-
-//    for(size_t j = 0; myBoard.getListePieceBoard().size(); j++)
-//        std::cout<<convertPieceToString(myBoard.getListePieceBoard()[j]);
+    myBoard.eraseFromJouable(pos-1);
 }

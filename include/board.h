@@ -9,21 +9,16 @@ class board
     public:
         board();
         virtual ~board();
-
         int getSizeBoard();
         std::vector<Piece> getListePieceBoard();
         void setListePieceBoard(Piece, int);
         std::vector<Piece> getListePieceJouable();
-
+        void eraseFromJouable(int);
         bool isQuartoCouleur();
         bool isQuartoTaille();
         bool isQuartoForme();
         bool isQuartoProfondeur();
         bool isQuarto();
-
-        void deplacerPiece();
-
-
     protected:
         int m_sizeBoard;
         std::vector<Piece> m_listePieceBoard;

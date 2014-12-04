@@ -21,38 +21,42 @@ Piece::~Piece()
 }
 
 void Piece::setCouleur(couleur color)
-	{
-		m_couleur = color;
-	}
-	couleur Piece::getCouleur()
-	{
-		return m_couleur;
-	}
-	void Piece::setTaille(taille length)
-	{
-		m_taille = length;
-	}
-	taille Piece::getTaille()
-	{
-		return m_taille;
-	}
-	void Piece::setForme(forme shape)
-	{
-		m_forme = shape;
-	}
-	forme Piece::getForme()
-	{
-		return m_forme;
-	}
-	void Piece::setProfondeur(profondeur depth)
-	{
-		m_profondeur = depth;
-	}
-	profondeur Piece::getProfondeur()
-	{
-		return m_profondeur;
-	}
+{
+    m_couleur = color;
+}
+couleur Piece::getCouleur()
+{
+    return m_couleur;
+}
 
+void Piece::setTaille(taille length)
+{
+    m_taille = length;
+}
+taille Piece::getTaille()
+{
+    return m_taille;
+}
+
+void Piece::setForme(forme shape)
+{
+    m_forme = shape;
+}
+forme Piece::getForme()
+{
+    return m_forme;
+}
+
+void Piece::setProfondeur(profondeur depth)
+{
+    m_profondeur = depth;
+}
+profondeur Piece::getProfondeur()
+{
+    return m_profondeur;
+}
+
+//Renvoie une chaîne de caractère correspondant à une pièce
 string convertPieceToString(Piece piece)
 {
     string pieceString = "";
@@ -76,6 +80,7 @@ string convertPieceToString(Piece piece)
     return pieceString;
 }
 
+//Renvoie un vecteur contenant toutes les pièces possibles
 std::vector<Piece> creerToutePiece()
 {
     std::vector<Piece> listePiece;

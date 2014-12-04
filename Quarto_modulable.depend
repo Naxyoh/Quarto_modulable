@@ -12,7 +12,7 @@
 	"affichage.h"
 	"Controleur.h"
 
-1417626375 c:\users\nax\documents\github\quarto_modulable\include\board.h
+1417711795 c:\users\nax\documents\github\quarto_modulable\include\board.h
 	"general.h"
 	"Piece.h"
 
@@ -22,18 +22,18 @@
 1417630787 c:\users\nax\documents\github\quarto_modulable\include\affichage.h
 	"general.h"
 
-1417631781 source:c:\users\nax\documents\github\quarto_modulable\main.cpp
+1417711334 source:c:\users\nax\documents\github\quarto_modulable\main.cpp
 	"general.h"
 
 1417630787 source:c:\users\nax\documents\github\quarto_modulable\src\affichage.cpp
 	"general.h"
 
-1417626548 source:c:\users\nax\documents\github\quarto_modulable\src\board.cpp
+1417708706 source:c:\users\nax\documents\github\quarto_modulable\src\board.cpp
 	"general.h"
 	"Piece.h"
 	<cmath>
 
-1417631769 source:c:\users\nax\documents\github\quarto_modulable\src\controleur.cpp
+1417711044 source:c:\users\nax\documents\github\quarto_modulable\src\controleur.cpp
 	"general.h"
 
 1417630487 c:\users\nax\documents\github\quarto_modulable\include\controleur.h

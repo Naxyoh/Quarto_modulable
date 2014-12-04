@@ -34,10 +34,13 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
+		<Unit filename="include/Controleur.h" />
 		<Unit filename="include/Piece.h" />
 		<Unit filename="include/affichage.h" />
 		<Unit filename="include/board.h" />
+		<Unit filename="include/general.h" />
 		<Unit filename="main.cpp" />
+		<Unit filename="src/Controleur.cpp" />
 		<Unit filename="src/Piece.cpp" />
 		<Unit filename="src/affichage.cpp" />
 		<Unit filename="src/board.cpp" />
