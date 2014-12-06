@@ -27,6 +27,15 @@ class AffichageConsole : public IAffichage
     private:
 };
 
+class AffichageSFML : public IAffichage
+{
+    public:
+        virtual void drawPieceAt(board&, int);
+        virtual void drawBoard(board&);
+    protected:
+    private:
+};
+
 
 
 #endif // AFFICHAGE_H
