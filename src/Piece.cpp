@@ -65,13 +65,13 @@ string convertPieceToString(Piece piece)
     else if(piece.getCouleur()== zeroC) pieceString += "        ";
     else pieceString += "Noir";
 
-    if(piece.getForme()==rond) pieceString += "Rond";
-    else if(piece.getForme()==zeroF) pieceString += " ";
-    else pieceString+="Carre";
-
     if(piece.getTaille() == grand) pieceString += "Grand";
     else if(piece.getTaille() == zeroT) pieceString += " ";
     else pieceString += "Petit";
+
+    if(piece.getForme()==rond) pieceString += "Rond";
+    else if(piece.getForme()==zeroF) pieceString += " ";
+    else pieceString+="Carre";
 
     if(piece.getProfondeur() == plein) pieceString += "Plein";
     else if(piece.getProfondeur() == zeroP) pieceString += "         ";

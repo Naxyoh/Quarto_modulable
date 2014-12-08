@@ -19,4 +19,11 @@ class ControleurConsole : public Controleur
         virtual void jouerPiece(board&, Piece);
 };
 
+class ControleurSFML : public Controleur
+{
+    public:
+        virtual Piece selectionnerPiece(board&);
+        virtual void jouerPiece(board&, Piece);
+};
+
 #endif // CONTROLEUR_H

@@ -28,3 +28,9 @@ void ControleurConsole::jouerPiece(board &myBoard, Piece pieceAJouer)
     myBoard.setListePieceBoard(pieceAJouer, pos-1);
     myBoard.eraseFromJouable(pos-1);
 }
+
+//Piece ControleurSFML::selectionnerPiece(board &monPlateau)
+//{
+//    int position = -1;
+//
+//}

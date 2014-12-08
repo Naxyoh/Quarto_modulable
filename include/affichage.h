@@ -7,7 +7,6 @@
 class IAffichage
 {
     public:
-        virtual void drawPieceAt(board&, int) = 0;
         virtual void drawBoard(board&) = 0;
     protected:
     private:
@@ -16,7 +15,6 @@ class IAffichage
 class AffichageConsole : public IAffichage
 {
     public:
-        virtual void drawPieceAt(board&, int);
         virtual void drawBoard(board&);
         void afficherPiece(Piece const& );
         void afficherListePiece(std::vector<Piece> const& );
@@ -30,7 +28,6 @@ class AffichageConsole : public IAffichage
 class AffichageSFML : public IAffichage
 {
     public:
-        virtual void drawPieceAt(board&, int);
         virtual void drawBoard(board&);
     protected:
     private:

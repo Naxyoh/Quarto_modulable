@@ -2,12 +2,6 @@
 
 using namespace std;
 
-void AffichageConsole::drawPieceAt(board &myBoard, int position)
-{
-    Piece pieceAAfficher = myBoard.getListePieceBoard()[position];
-
-}
-
 void AffichageConsole::drawBoard(board &monPlateau )
 {
     for (size_t i =0; i<monPlateau.getListePieceBoard().size(); i++)
@@ -69,45 +63,101 @@ void AffichageConsole::afficherPieceBoard(board monPlateau )
 /////////////////////////////////////////////////////////
 
 
-void AffichageSFML::drawBoard(board&)
+void AffichageSFML::drawBoard(board& monPlateau)
 {
-    sf::Vector2u size;
-    sf::RenderWindow m_mainWindow;
+    sf::RenderWindow mainWindow;
     sf::Texture grille, fond;
+    sf::Texture NoirPetitCarrePlein, NoirPetitCarreCreux, NoirPetitRondPlein, NoirPetitRondCreux,
+                NoirGrandCarrePlein, NoirGrandCarreCreux, NoirGrandRondPlein, NoirGrandRondCreux,
+                BlancPetitCarrePlein, BlancPetitCarreCreux, BlancPetitRondPlein, BlancPetitRondCreux,
+                BlancGrandCarrePlein, BlancGrandCarreCreux, BlancGrandRondPlein, BlancGrandRondCreux;
 
-
-    int win_height = 800;
     int win_width = 600;
-    m_mainWindow.create(sf::VideoMode(win_height,win_width,32),"Quarto");
+    int win_height = 800;
 
+    mainWindow.create(sf::VideoMode(win_height,win_width,32),"Quarto", sf::Style::Titlebar | sf::Style::Close);
 
     if(grille.loadFromFile("images/Grille.png") != true || fond.loadFromFile("images/fond.png") != true)
         return;
 
-    sf::Sprite grilleSprite(grille), fondSprite(fond);
-    size = fond.getSize();
+    //Chargement des images des pièces
+    if( NoirPetitCarrePlein.loadFromFile("images/NoirPetitCarrePlein.png") != true || NoirPetitCarreCreux.loadFromFile("images/NoirPetitCarreCreux.png") != true ||
+        NoirPetitRondPlein.loadFromFile("images/NoirPetitRondPlein.png") != true ||  NoirPetitRondCreux.loadFromFile("images/NoirPetitRondCreux.png") != true ||
+        NoirGrandCarrePlein.loadFromFile("images/NoirGrandCarrePlein.png") != true ||  NoirGrandCarreCreux.loadFromFile("images/NoirGrandCarreCreux.png") != true ||
+        NoirGrandRondPlein.loadFromFile("images/NoirGrandRondPlein.png") != true ||  NoirGrandRondCreux.loadFromFile("images/NoirGrandRondCreux.png") != true ||
+        BlancPetitCarrePlein.loadFromFile("images/BlancPetitCarrePlein.png") != true ||  BlancPetitCarreCreux.loadFromFile("images/BlancPetitCarreCreux.png") != true ||
+        BlancPetitRondPlein.loadFromFile("images/BlancPetitRondPlein.png") != true ||  BlancPetitRondCreux.loadFromFile("images/BlancPetitRondCreux.png") != true ||
+        BlancGrandCarrePlein.loadFromFile("images/BlancGrandCarrePlein.png") != true ||  BlancGrandCarreCreux.loadFromFile("images/BlancGrandCarreCreux.png") != true ||
+        BlancGrandRondPlein.loadFromFile("images/BlancGrandRondPlein.png") != true ||  BlancGrandRondCreux.loadFromFile("images/BlancGrandRondCreux.png") != true)
+            return;
 
+    sf::Sprite grilleSprite(grille), fondSprite(fond);
+
+    //Création des sprites associés aux pieces
+    sf::Sprite  NoirPetitCarrePleinSprite(NoirPetitCarrePlein), NoirPetitCarreCreuxSprite(NoirPetitCarreCreux), NoirPetitRondPleinSprite(NoirPetitRondPlein), NoirPetitRondCreuxSprite(NoirPetitRondCreux),
+                NoirGrandCarrePleinSprite(NoirGrandCarrePlein), NoirGrandCarreCreuxSprite(NoirGrandCarreCreux), NoirGrandRondPleinSprite(NoirGrandRondPlein), NoirGrandRondCreuxSprite(NoirGrandRondCreux),
+                BlancPetitCarrePleinSprite(BlancPetitCarrePlein), BlancPetitCarreCreuxSprite(BlancPetitCarreCreux), BlancPetitRondPleinSprite(BlancPetitRondPlein), BlancPetitRondCreuxSprite(BlancPetitRondCreux),
+                BlancGrandCarrePleinSprite(BlancGrandCarrePlein), BlancGrandCarreCreuxSprite(BlancGrandCarreCreux), BlancGrandRondPleinSprite(BlancGrandRondPlein), BlancGrandRondCreuxSprite(BlancGrandRondCreux);
+
+    //Lien entre piece affichée et présence dans le vecteur de piece jouable
+    std::vector<sf::Sprite> listeSpritePiece;
+    for(size_t i = 0; i<monPlateau.getListePieceJouable().size(); i++)
+    {
+        if(convertPieceToString(monPlateau.getListePieceJouable()[i]) == "NoirPetitCarrePlein") listeSpritePiece.push_back(NoirPetitCarrePleinSprite);
+        else if(convertPieceToString(monPlateau.getListePieceJouable()[i]) == "NoirPetitCarreCreux") listeSpritePiece.push_back(NoirPetitCarreCreuxSprite);
+        else if(convertPieceToString(monPlateau.getListePieceJouable()[i]) == "NoirPetitRondPlein") listeSpritePiece.push_back(NoirPetitRondPleinSprite);
+        else if(convertPieceToString(monPlateau.getListePieceJouable()[i]) == "NoirPetitRondCreux") listeSpritePiece.push_back(NoirPetitRondCreuxSprite);
+        else if(convertPieceToString(monPlateau.getListePieceJouable()[i]) == "NoirGrandCarrePlein") listeSpritePiece.push_back(NoirGrandCarrePleinSprite);
+        else if(convertPieceToString(monPlateau.getListePieceJouable()[i]) == "NoirGrandCarreCreux") listeSpritePiece.push_back(NoirGrandCarreCreuxSprite);
+        else if(convertPieceToString(monPlateau.getListePieceJouable()[i]) == "NoirGrandRondPlein") listeSpritePiece.push_back(NoirGrandRondPleinSprite);
+        else if(convertPieceToString(monPlateau.getListePieceJouable()[i]) == "NoirGrandRondCreux") listeSpritePiece.push_back(NoirGrandRondCreuxSprite);
+        else if(convertPieceToString(monPlateau.getListePieceJouable()[i]) == "BlancPetitCarrePlein") listeSpritePiece.push_back(BlancPetitCarrePleinSprite);
+        else if(convertPieceToString(monPlateau.getListePieceJouable()[i]) == "BlancPetitCarreCreux") listeSpritePiece.push_back(BlancPetitCarreCreuxSprite);
+        else if(convertPieceToString(monPlateau.getListePieceJouable()[i]) == "BlancPetitRondPlein") listeSpritePiece.push_back(BlancPetitRondPleinSprite);
+        else if(convertPieceToString(monPlateau.getListePieceJouable()[i]) == "BlancPetitRondCreux") listeSpritePiece.push_back(BlancPetitRondCreuxSprite);
+        else if(convertPieceToString(monPlateau.getListePieceJouable()[i]) == "BlancGrandCarrePlein") listeSpritePiece.push_back(BlancGrandCarrePleinSprite);
+        else if(convertPieceToString(monPlateau.getListePieceJouable()[i]) == "BlancGrandCarreCreux") listeSpritePiece.push_back(BlancGrandCarreCreuxSprite);
+        else if(convertPieceToString(monPlateau.getListePieceJouable()[i]) == "BlancGrandRondPlein") listeSpritePiece.push_back(BlancGrandRondPleinSprite);
+        else if(convertPieceToString(monPlateau.getListePieceJouable()[i]) == "BlancGrandRondCreux") listeSpritePiece.push_back(BlancGrandRondCreuxSprite);
+    }
+
+    //Placement des piece sur le board (a tester) faux, faut refaire une liste Jouable puis push_back et ensuite les déplacer
+    for(size_t i = 0; i<monPlateau.getListePieceJouable().size(); i++)
+    {
+        if(monPlateau.getListePieceBoard()[i] != Piece())
+        {
+            if(i<4) listeSpritePiece[i].setPosition(win_width/3.5+60*i, win_height/4);
+            else if(i>=4 && i<8) listeSpritePiece[i].setPosition(win_width/3.5+60*i, win_height/4+60*i);
+            else if(i>=8 && i<12) listeSpritePiece[i].setPosition(win_width/3.5+60*i, win_height/4+60*2*i);
+            else if(i>=12 && i<16) listeSpritePiece[i].setPosition(win_width/3.5+60*i, win_height/4+60*3*i);
+        }
+    }
 
     grilleSprite.setPosition(win_width/3.5,win_height/4);
 
+    //Positionnement des pièces
+    for(size_t i = 0; i<listeSpritePiece.size(); i++)
+    {
+        if(i<8) listeSpritePiece[i].setPosition(100+70*i, 20);
+        else listeSpritePiece[i].setPosition(100+70*(i-8), 110);
+    }
 
-    while (m_mainWindow.isOpen())
+    while (mainWindow.isOpen())
     {
         sf::Event event;
-        while (m_mainWindow.pollEvent(event))
+        while (mainWindow.pollEvent(event))
         {
             if (event.type == sf::Event::Closed)
-                m_mainWindow.close();
+                mainWindow.close();
         }
 
-        m_mainWindow.clear();
-        m_mainWindow.draw(fondSprite);
-        m_mainWindow.draw(grilleSprite);
-        m_mainWindow.display();
+        mainWindow.clear();
+        mainWindow.draw(fondSprite);
+        mainWindow.draw(grilleSprite);
+        for(size_t i = 0; i<listeSpritePiece.size(); i++)
+        {
+            mainWindow.draw(listeSpritePiece[i]);
+        }
+        mainWindow.display();
     }
-}
-
-void AffichageSFML::drawPieceAt(board &myBoard, int position)
-{
-
 }
