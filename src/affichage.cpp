@@ -65,17 +65,17 @@ void AffichageConsole::afficherPieceBoard(board monPlateau )
 
 void AffichageSFML::drawBoard(board& monPlateau)
 {
-    sf::RenderWindow mainWindow;
+    //sf::RenderWindow mainWindow;
     sf::Texture grille, fond;
     sf::Texture NoirPetitCarrePlein, NoirPetitCarreCreux, NoirPetitRondPlein, NoirPetitRondCreux,
                 NoirGrandCarrePlein, NoirGrandCarreCreux, NoirGrandRondPlein, NoirGrandRondCreux,
                 BlancPetitCarrePlein, BlancPetitCarreCreux, BlancPetitRondPlein, BlancPetitRondCreux,
                 BlancGrandCarrePlein, BlancGrandCarreCreux, BlancGrandRondPlein, BlancGrandRondCreux;
 
-    int win_width = 600;
-    int win_height = 800;
+//    int win_width = 600;
+//    int win_height = 800;
 
-    mainWindow.create(sf::VideoMode(win_height,win_width,32),"Quarto", sf::Style::Titlebar | sf::Style::Close);
+    //mainWindow.create(sf::VideoMode(win_height,win_width,32),"Quarto", sf::Style::Titlebar | sf::Style::Close);
 
     if(grille.loadFromFile("images/Grille.png") != true || fond.loadFromFile("images/fond.png") != true)
         return;
@@ -121,19 +121,19 @@ void AffichageSFML::drawBoard(board& monPlateau)
         else if(convertPieceToString(monPlateau.getListePieceJouable()[i]) == "BlancGrandRondCreux") listeSpritePiece.push_back(BlancGrandRondCreuxSprite);
     }
 
-    //Placement des piece sur le board (a tester) faux, faut refaire une liste Jouable puis push_back et ensuite les déplacer
+    //Placement des piece sur le board (a tester)
     for(size_t i = 0; i<monPlateau.getListePieceJouable().size(); i++)
     {
         if(monPlateau.getListePieceBoard()[i] != Piece())
         {
-            if(i<4) listeSpritePiece[i].setPosition(win_width/3.5+60*i, win_height/4);
-            else if(i>=4 && i<8) listeSpritePiece[i].setPosition(win_width/3.5+60*i, win_height/4+60*i);
-            else if(i>=8 && i<12) listeSpritePiece[i].setPosition(win_width/3.5+60*i, win_height/4+60*2*i);
-            else if(i>=12 && i<16) listeSpritePiece[i].setPosition(win_width/3.5+60*i, win_height/4+60*3*i);
+            if(i<4) listeSpritePiece[i].setPosition(150+60*i, 220);
+            else if(i>=4 && i<8) listeSpritePiece[i].setPosition(150+60*i, 220+60*i);
+            else if(i>=8 && i<12) listeSpritePiece[i].setPosition(150+60*i, 220+60*2*i);
+            else if(i>=12 && i<16) listeSpritePiece[i].setPosition(150+60*i, 220+60*3*i);
         }
     }
 
-    grilleSprite.setPosition(win_width/3.5,win_height/4);
+    grilleSprite.setPosition(150,220);
 
     //Positionnement des pièces
     for(size_t i = 0; i<listeSpritePiece.size(); i++)
@@ -142,22 +142,34 @@ void AffichageSFML::drawBoard(board& monPlateau)
         else listeSpritePiece[i].setPosition(100+70*(i-8), 110);
     }
 
-    while (mainWindow.isOpen())
-    {
-        sf::Event event;
-        while (mainWindow.pollEvent(event))
-        {
-            if (event.type == sf::Event::Closed)
-                mainWindow.close();
-        }
+//    while (m_mainWindow.isOpen())
+//    {
+//        sf::Event event;
+//        while (m_mainWindow.pollEvent(event))
+//        {
+//            if (event.type == sf::Event::Closed)
+//                m_mainWindow.close();
+//        }
 
-        mainWindow.clear();
-        mainWindow.draw(fondSprite);
-        mainWindow.draw(grilleSprite);
-        for(size_t i = 0; i<listeSpritePiece.size(); i++)
-        {
-            mainWindow.draw(listeSpritePiece[i]);
-        }
-        mainWindow.display();
-    }
+            m_mainWindow.clear();
+            m_mainWindow.draw(fondSprite);
+            m_mainWindow.draw(grilleSprite);
+            for(size_t i = 0; i<listeSpritePiece.size(); i++)
+            {
+                m_mainWindow.draw(listeSpritePiece[i]);
+            }
+            m_mainWindow.display();
+//        }
+}
+
+void AffichageSFML::setWindow()
+{
+    int win_width = 600;
+    int win_height = 800;
+    m_mainWindow.create(sf::VideoMode(win_height,win_width,32),"Quarto", sf::Style::Titlebar | sf::Style::Close);;
+}
+
+sf::RenderWindow &AffichageSFML::getMainWindow()
+{
+    return m_mainWindow;
 }

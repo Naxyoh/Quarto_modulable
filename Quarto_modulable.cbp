@@ -13,7 +13,6 @@
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-g" />
-					<Add directory="include" />
 				</Compiler>
 				<Linker>
 					<Add library="sfml-graphics-s-d" />
@@ -28,7 +27,6 @@
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-O2" />
-					<Add directory="include" />
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
@@ -42,10 +40,11 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 			<Add option="-DSFML_STATIC" />
-			<Add directory="C:/SFML-2.1/include" />
+			<Add directory="C:/SFML-2.0/include" />
+			<Add directory="C:/Users/Jacques Pich/Documents/GitHub/Quarto_modulable/include" />
 		</Compiler>
 		<Linker>
-			<Add directory="C:/SFML-2.1/lib" />
+			<Add directory="C:/SFML-2.0/lib" />
 		</Linker>
 		<Unit filename="include/Controleur.h" />
 		<Unit filename="include/Piece.h" />

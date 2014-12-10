@@ -29,7 +29,11 @@ class AffichageSFML : public IAffichage
 {
     public:
         virtual void drawBoard(board&);
+
+        void setWindow();
+        sf::RenderWindow &getMainWindow();
     protected:
+        sf::RenderWindow m_mainWindow;
     private:
 };
 
