@@ -26,6 +26,7 @@ int main()
             affich.drawBoard(monPlateau);
             pieceSelectionne = control.selectionnerPiece(monPlateau);
             control.jouerPiece(monPlateau, pieceSelectionne);
+            system("clear");
         }
         affich.drawBoard(monPlateau);
         cout<<"Quarto !\n";
@@ -39,15 +40,14 @@ int main()
             while(monPlateau.isQuarto() != true)
             {
                 sf::Event event;
-                Piece pieceSelectionne = Piece();
+                control.setEvent(event);
                 affich.drawBoard(monPlateau);
-                while (affich.getMainWindow().pollEvent(event))
+                while (affich.getMainWindow().pollEvent(control.getEvent()))
                 {
-
-                    if (event.type == sf::Event::Closed) affich.getMainWindow().close();
-                    if (event.type == sf::Event::MouseButtonPressed)
+                    if (control.getEvent().type == sf::Event::Closed) affich.getMainWindow().close();
+                    if (control.getEvent().type == sf::Event::MouseButtonPressed)
                     {
-                        control.setEvent(event);
+                        Piece pieceSelectionne = Piece();
                         pieceSelectionne = control.selectionnerPiece(monPlateau);
                         control.jouerPiece(monPlateau, pieceSelectionne);
                     }

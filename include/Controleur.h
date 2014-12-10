@@ -25,7 +25,7 @@ class ControleurSFML : public Controleur
         virtual Piece selectionnerPiece(board&);
         virtual void jouerPiece(board&, Piece);
         void setEvent(sf::Event);
-        sf::Event getEvent();
+        sf::Event &getEvent();
     protected :
         sf::Event m_event;
 };
