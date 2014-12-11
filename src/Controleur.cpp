@@ -72,42 +72,46 @@ Piece ControleurSFML::selectionnerPiece(board &monPlateau)
 void ControleurSFML::jouerPiece(board& myBoard, Piece pieceAJouer)
 {
     int position = -1;
+    std::cout<<"piece jouee : "<<convertPieceToString(pieceAJouer)<<std::endl;
     sf::Mouse::Button button = m_event.mouseButton.button;
+
     if (button == sf::Mouse::Left)
     {
 
             if (m_event.mouseButton.y > 230 && m_event.mouseButton.y < 310)
             {
-                if (m_event.mouseButton.x > 160 && m_event.mouseButton.x > 240) position = 0;
+                if (m_event.mouseButton.x > 160 && m_event.mouseButton.x < 240) position = 0;
                 else if (m_event.mouseButton.x > 240 && m_event.mouseButton.x < 320 && myBoard.getListePieceJouable().size()>1) position = 1;
                 else if (m_event.mouseButton.x > 320 && m_event.mouseButton.x < 400 && myBoard.getListePieceJouable().size()>2) position = 2;
                 else if (m_event.mouseButton.x > 400 && m_event.mouseButton.x < 480 && myBoard.getListePieceJouable().size()>3) position = 3;
             }
             else if (m_event.mouseButton.y > 310 && m_event.mouseButton.y < 390)
             {
-                if (m_event.mouseButton.x > 160 && m_event.mouseButton.x > 240 && myBoard.getListePieceJouable().size()>4) position = 4;
+                if (m_event.mouseButton.x > 160 && m_event.mouseButton.x < 240 && myBoard.getListePieceJouable().size()>4) position = 4;
                 else if (m_event.mouseButton.x > 240 && m_event.mouseButton.x < 320 && myBoard.getListePieceJouable().size()>5) position = 5;
                 else if (m_event.mouseButton.x > 320 && m_event.mouseButton.x < 400 && myBoard.getListePieceJouable().size()>6) position = 6;
                 else if (m_event.mouseButton.x > 400 && m_event.mouseButton.x < 480 && myBoard.getListePieceJouable().size()>7) position = 7;
             }
             else if (m_event.mouseButton.y > 390 && m_event.mouseButton.y < 470)
             {
-                if (m_event.mouseButton.x > 160 && m_event.mouseButton.x > 240 && myBoard.getListePieceJouable().size()>8) position = 8;
+                if (m_event.mouseButton.x > 160 && m_event.mouseButton.x < 240 && myBoard.getListePieceJouable().size()>8) position = 8;
                 else if (m_event.mouseButton.x > 240 && m_event.mouseButton.x < 320 && myBoard.getListePieceJouable().size()>9) position = 9;
                 else if (m_event.mouseButton.x > 320 && m_event.mouseButton.x < 400 && myBoard.getListePieceJouable().size()>10) position = 10;
                 else if (m_event.mouseButton.x > 400 && m_event.mouseButton.x < 480 && myBoard.getListePieceJouable().size()>11) position = 11;
             }
             else if (m_event.mouseButton.y > 470 && m_event.mouseButton.y < 550)
             {
-                if (m_event.mouseButton.x > 160 && m_event.mouseButton.x > 240 && myBoard.getListePieceJouable().size()>12) position = 12;
+                if (m_event.mouseButton.x > 160 && m_event.mouseButton.x < 240 && myBoard.getListePieceJouable().size()>12) position = 12;
                 else if (m_event.mouseButton.x > 240 && m_event.mouseButton.x < 320 && myBoard.getListePieceJouable().size()>13) position = 13;
                 else if (m_event.mouseButton.x > 320 && m_event.mouseButton.x < 400 && myBoard.getListePieceJouable().size()>14) position = 14;
                 else if (m_event.mouseButton.x > 400 && m_event.mouseButton.x < 480 && myBoard.getListePieceJouable().size()>15) position = 15;
             }
 
     }
+    std::cout<<"position de jeu : "<<position<<std::endl;
     if(position == -1 || pieceAJouer == Piece())
     {
+        std::cout<<"position wrong ou piece vide"<<std::endl;
        return;
     }
     std::cout<<"piece a jouer : "<<convertPieceToString(pieceAJouer)<<" a placer a la position : "<<std::endl;

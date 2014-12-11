@@ -65,17 +65,13 @@ void AffichageConsole::afficherPieceBoard(board monPlateau )
 
 void AffichageSFML::drawBoard(board& monPlateau)
 {
-    //sf::RenderWindow mainWindow;
     sf::Texture grille, fond;
     sf::Texture NoirPetitCarrePlein, NoirPetitCarreCreux, NoirPetitRondPlein, NoirPetitRondCreux,
                 NoirGrandCarrePlein, NoirGrandCarreCreux, NoirGrandRondPlein, NoirGrandRondCreux,
                 BlancPetitCarrePlein, BlancPetitCarreCreux, BlancPetitRondPlein, BlancPetitRondCreux,
                 BlancGrandCarrePlein, BlancGrandCarreCreux, BlancGrandRondPlein, BlancGrandRondCreux;
 
-//    int win_width = 600;
-//    int win_height = 800;
 
-    //mainWindow.create(sf::VideoMode(win_height,win_width,32),"Quarto", sf::Style::Titlebar | sf::Style::Close);
 
     if(grille.loadFromFile("images/Grille.png") != true || fond.loadFromFile("images/fond.png") != true)
         return;
@@ -122,7 +118,7 @@ void AffichageSFML::drawBoard(board& monPlateau)
     }
 
     //Placement des piece sur le board (a tester)
-    for(size_t i = 0; i<monPlateau.getListePieceJouable().size(); i++)
+    for(size_t i = 0; i<monPlateau.getListePieceBoard().size(); i++)
     {
         if(monPlateau.getListePieceBoard()[i] != Piece())
         {
