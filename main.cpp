@@ -2,90 +2,68 @@
 
 using namespace std;
 
+enum typeUtils {Console, SFML};
+
 int main()
 {
+
     //Console
-//    AffichageConsole affich;
-//    ControleurConsole control;
+    AffichageConsole affichConsole;
+    ControleurConsole controlConsole;
+    //typeUtils type = Console;
 
     //SFML
     AffichageSFML affich;
     ControleurSFML control;
-
+    typeUtils type = SFML;
 
 
     board monPlateau = board();
 
-//    affichSFML.drawBoard(monPlateau);
-
-    if(typeid(affich) == typeid(AffichageConsole))
+    if(type == Console)
     {
         while(monPlateau.isQuarto() != true)
         {
             Piece pieceSelectionne = Piece();
-            affich.drawBoard(monPlateau);
-            pieceSelectionne = control.selectionnerPiece(monPlateau);
-            control.jouerPiece(monPlateau, pieceSelectionne);
+            affichConsole.drawBoard(monPlateau);
+            pieceSelectionne = controlConsole.selectionnerPiece(monPlateau);
+            controlConsole.jouerPiece(monPlateau, pieceSelectionne);
             system("clear");
         }
-        affich.drawBoard(monPlateau);
+        affichConsole.drawBoard(monPlateau);
         cout<<"Quarto !\n";
     }
 
-    else if(typeid(affich) == typeid(AffichageSFML))
+    else if(type == SFML)
     {
         affich.setWindow();
-        int etape = 0;
-        bool selectionValidee = false, joueeValidee = false;
         Piece pieceSelectionne = Piece();
         while (affich.getMainWindow().isOpen())
         {
-            while(monPlateau.isQuarto() != true)
+            sf::Event event;
+            affich.drawBoard(monPlateau);
+            while (affich.getMainWindow().pollEvent(event))
             {
-                sf::Event event;
-
                 control.setEvent(event);
-                affich.drawBoard(monPlateau);
-                while (affich.getMainWindow().pollEvent(control.getEvent()))
+                if (control.getEvent().type == sf::Event::Closed)
                 {
+                    affich.getMainWindow().close();
+                }
 
-                    selectionValidee = false;
-                    joueeValidee = false;
-                    if (control.getEvent().type == sf::Event::Closed) affich.getMainWindow().close();
-
-                    if (control.getEvent().type == sf::Event::MouseButtonPressed)
+                if (control.getEvent().type == sf::Event::MouseButtonPressed)
+                {
+                    if(control.getEvent().mouseButton.x>110 && control.getEvent().mouseButton.x<650
+                       && control.getEvent().mouseButton.y >20 && control.getEvent().mouseButton.y < 170)
                     {
-                        if(etape == 0)
-                        {
-                            pieceSelectionne = control.selectionnerPiece(monPlateau);
-                            selectionValidee = true;
-
-                        }
-
-                        //std::cout<<"piece a jouer : "<<convertPieceToString(pieceSelectionne)<<" a placer a la position : "<<std::endl;
-                        if(etape == 1)
-                        {
-                            control.jouerPiece(monPlateau, pieceSelectionne); // Y'a un pb de synchro, on fait selection et jeu à partir du meme click
-                            joueeValidee = true;
-                        }
-
-//                        for(size_t j = 0; j<monPlateau.getListePieceBoard().size(); j++)
-//                        {
-//                            cout<<j+1<<") ";
-//                            cout<<convertPieceToString(monPlateau.getListePieceBoard()[j]);
-//                            cout<<"\n";
-//                        }
-                        if(etape == 0 && selectionValidee)
-                        {
-                            etape = 1;
-                        }
-                        if(etape == 1 && joueeValidee)
-                        {
-                            etape = 0;
-                        }
-
+                        pieceSelectionne = control.selectionnerPiece(monPlateau);
+                    }
+                    if(pieceSelectionne != Piece() && (control.getEvent().mouseButton.y > 230 && control.getEvent().mouseButton.y < 550)
+                       && (control.getEvent().mouseButton.x > 160 && control.getEvent().mouseButton.x < 480))
+                    {
+                        control.jouerPiece(monPlateau, pieceSelectionne);
                     }
                 }
+                affich.drawBoard(monPlateau);
             }
         }
     }

@@ -126,7 +126,7 @@ bool board::isQuartoForme()
     //On regarde colonne par colonne
     for(int i = 0; i < m_sizeBoard; i = i + 1)
     {
-        if((m_listePieceBoard[i].getForme() == m_listePieceBoard[i+4].getForme()) && (m_listePieceBoard[i].getForme() == m_listePieceBoard[i+8].getForme()) && (m_listePieceBoard[i].getForme() == m_listePieceBoard[i+3].getForme()) && (m_listePieceBoard[i].getForme() != zeroF))
+        if((m_listePieceBoard[i].getForme() == m_listePieceBoard[i+4].getForme()) && (m_listePieceBoard[i].getForme() == m_listePieceBoard[i+8].getForme()) && (m_listePieceBoard[i].getForme() == m_listePieceBoard[i+12].getForme()) && (m_listePieceBoard[i].getForme() != zeroF))
         {
             return true;
         }
