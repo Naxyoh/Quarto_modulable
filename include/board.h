@@ -10,6 +10,8 @@ class board
         board();
         virtual ~board();
         int getSizeBoard();
+        void setPieceSelectionnee(Piece);
+        Piece getPieceSelectionnee();
         std::vector<Piece> getListePieceBoard();
         void setListePieceBoard(Piece, int);
         std::vector<Piece> getListePieceJouable();
@@ -21,6 +23,7 @@ class board
         bool isQuarto();
     protected:
         int m_sizeBoard;
+        Piece m_pieceSelectiionnee;
         std::vector<Piece> m_listePieceBoard;
         std::vector<Piece> m_listePieceJouable;
     private:

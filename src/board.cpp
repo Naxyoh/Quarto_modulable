@@ -4,7 +4,7 @@
 
 using namespace std;
 
-board::board() : m_sizeBoard(4), m_listePieceJouable(creerToutePiece())
+board::board() : m_sizeBoard(4), m_pieceSelectiionnee(Piece()), m_listePieceJouable(creerToutePiece())
 {
     for(int i = 0; i< m_sizeBoard*m_sizeBoard; i++)
     {
@@ -21,6 +21,16 @@ board::~board()
 std::vector<Piece> board::getListePieceBoard()
 {
     return m_listePieceBoard;
+}
+
+void board::setPieceSelectionnee(Piece pieceSelec)
+{
+    m_pieceSelectiionnee = pieceSelec;
+}
+
+Piece board::getPieceSelectionnee()
+{
+    return m_pieceSelectiionnee;
 }
 
 //Permet d'insérer une pièce dans le vecteur des pièces présentes sur le plateau

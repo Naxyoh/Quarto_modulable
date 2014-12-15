@@ -2,7 +2,6 @@
 #define GENERAL_H_INCLUDED
 
 #include <iostream>
-#include <sstream>
 #include <string>
 #include <vector>
 #include <cmath>

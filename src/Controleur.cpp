@@ -1,6 +1,6 @@
 #include "general.h"
 
-Piece ControleurConsole::selectionnerPiece(board &myBoard)
+void ControleurConsole::selectionnerPiece(board &myBoard)
 {
     int position = -1;
     do
@@ -12,7 +12,7 @@ Piece ControleurConsole::selectionnerPiece(board &myBoard)
 
     Piece pieceSelectionne = myBoard.getListePieceJouable()[position-1];
     std::cout<<"Vous avez selectionne "<<convertPieceToString(pieceSelectionne)<<std::endl;
-    return pieceSelectionne;
+    myBoard.setPieceSelectionnee(pieceSelectionne);
 }
 
 void ControleurConsole::jouerPiece(board &myBoard, Piece pieceAJouer)
@@ -29,7 +29,7 @@ void ControleurConsole::jouerPiece(board &myBoard, Piece pieceAJouer)
     myBoard.eraseFromJouable(pos-1);
 }
 
-Piece ControleurSFML::selectionnerPiece(board &myBoard)
+void ControleurSFML::selectionnerPiece(board &myBoard)
 {
     int position = -1;
 
@@ -60,12 +60,12 @@ Piece ControleurSFML::selectionnerPiece(board &myBoard)
             }
         }
 
-        if(position == -1) return Piece();
+        if(position == -1) return;
 
 	Piece pieceSelectionne = myBoard.getListePieceJouable()[position];
 	std::cout<<"Piece selec : "<<convertPieceToString(pieceSelectionne)<<" position : "<<position<<std::endl;
 
-	return pieceSelectionne;
+	myBoard.setPieceSelectionnee(pieceSelectionne);
 }
 
 

@@ -139,7 +139,7 @@ void AffichageSFML::drawBoard(board& monPlateau)
         else if(convertPieceToString(monPlateau.getListePieceBoard()[i]) == "BlancGrandRondCreux") listeSpritePieceBoard.push_back(BlancGrandRondCreuxSprite);
     }
 
-    //Placement des piece sur le board (a tester)
+    //Placement des piece sur le board
     int cmpPiece = 0;
     for(size_t i = 0; i<monPlateau.getListePieceBoard().size(); i++)
     {
@@ -162,9 +162,29 @@ void AffichageSFML::drawBoard(board& monPlateau)
         else listeSpritePiece[i].setPosition(100+70*(i-8), 110);
     }
 
+    //Gestion de la piece selectionnee
+    sf::Texture pieceSelec;
+    if(convertPieceToString(monPlateau.getPieceSelectionnee())== "NoirPetitCarrePlein") pieceSelec.loadFromFile("images/NoirPetitCarrePlein.png");
+    else if(convertPieceToString(monPlateau.getPieceSelectionnee())== "NoirPetitCarreCreux") pieceSelec.loadFromFile("images/NoirPetitCarreCreux.png");
+    else if(convertPieceToString(monPlateau.getPieceSelectionnee())== "NoirPetitRondPlein") pieceSelec.loadFromFile("images/NoirPetitRondPlein.png");
+    else if(convertPieceToString(monPlateau.getPieceSelectionnee())== "NoirPetitRondCreux") pieceSelec.loadFromFile("images/NoirPetitRondCreux.png");
+    else if(convertPieceToString(monPlateau.getPieceSelectionnee())== "NoirGrandCarrePlein") pieceSelec.loadFromFile("images/NoirGrandCarrePlein.png");
+    else if(convertPieceToString(monPlateau.getPieceSelectionnee())== "NoirGrandCarreCreux") pieceSelec.loadFromFile("images/NoirGrandCarreCreux.png");
+    else if(convertPieceToString(monPlateau.getPieceSelectionnee())== "NoirGrandRondPlein") pieceSelec.loadFromFile("images/NoirGrandRondPlein.png");
+    else if(convertPieceToString(monPlateau.getPieceSelectionnee())== "NoirGrandRondCreux") pieceSelec.loadFromFile("images/NoirGrandRondCreux.png");
+    else if(convertPieceToString(monPlateau.getPieceSelectionnee())== "BlancPetitCarrePlein") pieceSelec.loadFromFile("images/BlancPetitCarrePlein.png");
+    else if(convertPieceToString(monPlateau.getPieceSelectionnee())== "BlancPetitCarreCreux") pieceSelec.loadFromFile("images/BlancPetitCarreCreux.png");
+    else if(convertPieceToString(monPlateau.getPieceSelectionnee())== "BlancPetitRondPlein") pieceSelec.loadFromFile("images/BlancPetitRondPlein.png");
+    else if(convertPieceToString(monPlateau.getPieceSelectionnee())== "BlancPetitRondCreux") pieceSelec.loadFromFile("images/BlancPetitRondCreux.png");
+    else if(convertPieceToString(monPlateau.getPieceSelectionnee())== "BlancGrandCarrePlein") pieceSelec.loadFromFile("images/BlancGrandCarrePlein.png");
+    else if(convertPieceToString(monPlateau.getPieceSelectionnee())== "BlancGrandCarreCreux") pieceSelec.loadFromFile("images/BlancGrandCarreCreux.png");
+    else if(convertPieceToString(monPlateau.getPieceSelectionnee())== "BlancGrandRondPlein") pieceSelec.loadFromFile("images/BlancGrandRondPlein.png");
+    else if(convertPieceToString(monPlateau.getPieceSelectionnee())== "BlancGrandRondCreux") pieceSelec.loadFromFile("images/BlancGrandRondCreux.png");
+    sf::Sprite pieceSelecSprite(pieceSelec);
+    pieceSelecSprite.setPosition(600,500);
 
     //Si quarto :
-    sf::Text quarto, restart;
+    sf::Text quarto, restart, pieceSelecText;
     sf::Font font;
     font.loadFromFile("Font/Arial.ttf");
     quarto.setString("Quarto !");
@@ -173,17 +193,25 @@ void AffichageSFML::drawBoard(board& monPlateau)
     quarto.setFont(font);
     quarto.setColor(sf::Color::Red);
     quarto.setPosition(270,100);
-
+    //Gestion affichage reset
     restart.setString("Appuyez sur une touche pour rejouer !");
     restart.setCharacterSize(28);
     restart.setStyle(sf::Text::Bold);
     restart.setFont(font);
     restart.setColor(sf::Color::Red);
     restart.setPosition(150,175);
+    //Piece selectionnee
+    pieceSelecText.setString("Piece selectionne : ");
+    pieceSelecText.setCharacterSize(20);
+    pieceSelecText.setFont(font);
+    pieceSelecText.setColor(sf::Color::Black);
+    pieceSelecText.setPosition(525,450);
 
     m_mainWindow.clear();
     m_mainWindow.draw(fondSprite);
     m_mainWindow.draw(grilleSprite);
+    m_mainWindow.draw(pieceSelecSprite);
+    if(monPlateau.getPieceSelectionnee() != Piece()) m_mainWindow.draw(pieceSelecText);
     for(size_t i = 0; i<listeSpritePieceBoard.size(); i++)
     {
         m_mainWindow.draw(listeSpritePieceBoard[i]);
