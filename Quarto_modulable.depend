@@ -2,8 +2,9 @@
 1418237631 source:c:\users\nax\documents\github\quarto_modulable\src\piece.cpp
 	"general.h"
 
-1418570854 c:\users\nax\documents\github\quarto_modulable\include\general.h
+1418659783 c:\users\nax\documents\github\quarto_modulable\include\general.h
 	<iostream>
+	<sstream>
 	<string>
 	<vector>
 	<cmath>
@@ -24,10 +25,10 @@
 1418237631 c:\users\nax\documents\github\quarto_modulable\include\affichage.h
 	"general.h"
 
-1418572143 source:c:\users\nax\documents\github\quarto_modulable\main.cpp
+1418661823 source:c:\users\nax\documents\github\quarto_modulable\main.cpp
 	"general.h"
 
-1418573249 source:c:\users\nax\documents\github\quarto_modulable\src\affichage.cpp
+1418661980 source:c:\users\nax\documents\github\quarto_modulable\src\affichage.cpp
 	"general.h"
 
 1418569654 source:c:\users\nax\documents\github\quarto_modulable\src\board.cpp

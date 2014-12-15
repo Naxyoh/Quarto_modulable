@@ -30,9 +30,11 @@ int main()
             controlConsole.jouerPiece(monPlateau, pieceSelectionne);
             system("clear");
         }
-        affichConsole.drawBoard(monPlateau);
-        cout<<"Quarto !\n";
+            affichConsole.drawBoard(monPlateau);
+            cout<<"Quarto !\n";
     }
+
+
 
     else if(type == SFML)
     {
@@ -63,6 +65,15 @@ int main()
                         control.jouerPiece(monPlateau, pieceSelectionne);
                     }
                 }
+
+                if(monPlateau.isQuarto())
+                    if (control.getEvent().type == sf::Event::KeyPressed)
+                {
+                    affich.getMainWindow().close();
+                    main();
+                    return 0;
+                }
+
                 affich.drawBoard(monPlateau);
             }
         }

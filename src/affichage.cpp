@@ -164,15 +164,22 @@ void AffichageSFML::drawBoard(board& monPlateau)
 
 
     //Si quarto :
-    sf::Text text;
+    sf::Text quarto, restart;
     sf::Font font;
     font.loadFromFile("Font/Arial.ttf");
-    text.setString("Quarto !");
-    text.setCharacterSize(72);
-    text.setStyle(sf::Text::Bold);
-    text.setFont(font);
-    text.setColor(sf::Color::Red);
-    text.setPosition(250,100);
+    quarto.setString("Quarto !");
+    quarto.setCharacterSize(72);
+    quarto.setStyle(sf::Text::Bold);
+    quarto.setFont(font);
+    quarto.setColor(sf::Color::Red);
+    quarto.setPosition(270,100);
+
+    restart.setString("Appuyez sur une touche pour rejouer !");
+    restart.setCharacterSize(28);
+    restart.setStyle(sf::Text::Bold);
+    restart.setFont(font);
+    restart.setColor(sf::Color::Red);
+    restart.setPosition(150,175);
 
     m_mainWindow.clear();
     m_mainWindow.draw(fondSprite);
@@ -185,8 +192,11 @@ void AffichageSFML::drawBoard(board& monPlateau)
     {
         m_mainWindow.draw(listeSpritePiece[i]);
     }
-    if(monPlateau.isQuarto()) m_mainWindow.draw(text);
-
+    if(monPlateau.isQuarto())
+    {
+        m_mainWindow.draw(quarto);
+        m_mainWindow.draw(restart);
+    }
     m_mainWindow.display();
 }
 
