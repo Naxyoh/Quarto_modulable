@@ -2,7 +2,6 @@
 #define AFFICHAGE_H
 
 #include "general.h"
-//#include "IAffichage.h"
 
 class IAffichage
 {
@@ -16,6 +15,7 @@ class AffichageConsole : public IAffichage
 {
     public:
         virtual void drawBoard(board&);
+        void drawPieceJouable(board &);
         void afficherPiece(Piece const& );
         void afficherListePiece(std::vector<Piece> const& );
         void afficherPieceBoard(board );

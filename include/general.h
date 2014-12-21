@@ -5,7 +5,8 @@
 #include <string>
 #include <vector>
 #include <cmath>
-#include <typeinfo>
+#include <limits>
+#include <sstream>
 
 //include pour la partie graphique
 #include <SFML/Graphics.hpp>
@@ -14,6 +15,7 @@
 #include "Piece.h"
 #include "affichage.h"
 #include "Controleur.h"
+#include "Engine.h"
 
 
 #endif // GENERAL_H_INCLUDED

@@ -4,7 +4,7 @@
 
 using namespace std;
 
-board::board() : m_sizeBoard(4), m_pieceSelectiionnee(Piece()), m_listePieceJouable(creerToutePiece())
+board::board() : m_sizeBoard(4), m_joueur(0), m_pieceSelectiionnee(Piece()), m_listePieceJouable(creerToutePiece())
 {
     for(int i = 0; i< m_sizeBoard*m_sizeBoard; i++)
     {
@@ -15,6 +15,16 @@ board::board() : m_sizeBoard(4), m_pieceSelectiionnee(Piece()), m_listePieceJoua
 board::~board()
 {
     //dtor
+}
+
+void board::setJoueur(int numJoueur)
+{
+    m_joueur = numJoueur;
+}
+
+int board::getJoueur()
+{
+    return m_joueur;
 }
 
 //Renvoie le vecteur des pièces présentes sur le plateau
@@ -61,9 +71,10 @@ void board::eraseFromJouable(int indicePieceJouable)
 bool board::isQuartoCouleur()
 {
     //On regarde ligne par ligne
-    for(int i = 0; i < m_sizeBoard; i = i + 4)
+    for(int i = 0; i < m_sizeBoard*m_sizeBoard; i = i + 4)
     {
-        if((m_listePieceBoard[i].getCouleur() == m_listePieceBoard[i+1].getCouleur()) && (m_listePieceBoard[i].getCouleur() == m_listePieceBoard[i+2].getCouleur()) && (m_listePieceBoard[i].getCouleur() == m_listePieceBoard[i+3].getCouleur()) && (m_listePieceBoard[i].getCouleur() != zeroC))
+        if((m_listePieceBoard[i].getCouleur() == m_listePieceBoard[i+1].getCouleur()) && (m_listePieceBoard[i].getCouleur() == m_listePieceBoard[i+2].getCouleur()) && (m_listePieceBoard[i].getCouleur() == m_listePieceBoard[i+3].getCouleur())
+           && (m_listePieceBoard[i].getCouleur() != zeroC))
         {
             return true;
         }
@@ -93,7 +104,7 @@ bool board::isQuartoCouleur()
 bool board::isQuartoTaille()
 {
     //On regarde ligne par ligne
-    for(int i = 0; i < m_sizeBoard; i = i + 4)
+    for(int i = 0; i < m_sizeBoard*m_sizeBoard; i = i + 4)
     {
         if((m_listePieceBoard[i].getTaille() == m_listePieceBoard[i+1].getTaille()) && (m_listePieceBoard[i].getTaille() == m_listePieceBoard[i+2].getTaille()) && (m_listePieceBoard[i].getTaille() == m_listePieceBoard[i+3].getTaille()) && (m_listePieceBoard[i].getTaille() != zeroT))
         {
@@ -126,9 +137,10 @@ bool board::isQuartoTaille()
 bool board::isQuartoForme()
 {
     //On regarde ligne par ligne
-    for(int i = 0; i < m_sizeBoard; i = i + 4)
+    for(int i = 0; i < m_sizeBoard*m_sizeBoard; i = i + 4)
     {
-        if((m_listePieceBoard[i].getForme() == m_listePieceBoard[i+1].getForme()) && (m_listePieceBoard[i].getForme() == m_listePieceBoard[i+2].getForme()) && (m_listePieceBoard[i].getForme() == m_listePieceBoard[i+3].getForme()) && (m_listePieceBoard[i].getForme() != zeroF))
+        if((m_listePieceBoard[i].getForme() == m_listePieceBoard[i+1].getForme()) && (m_listePieceBoard[i].getForme() == m_listePieceBoard[i+2].getForme()) && (m_listePieceBoard[i].getForme() == m_listePieceBoard[i+3].getForme())
+           && (m_listePieceBoard[i].getForme() != zeroF))
         {
             return true;
         }
@@ -158,7 +170,7 @@ bool board::isQuartoForme()
 bool board::isQuartoProfondeur()
 {
     //On regarde ligne par ligne
-    for(int i = 0; i < m_sizeBoard; i = i + 4)
+    for(int i = 0; i < m_sizeBoard*m_sizeBoard; i = i + 4)
     {
         if((m_listePieceBoard[i].getProfondeur() == m_listePieceBoard[i+1].getProfondeur()) && (m_listePieceBoard[i].getProfondeur() == m_listePieceBoard[i+2].getProfondeur()) && (m_listePieceBoard[i].getProfondeur() == m_listePieceBoard[i+3].getProfondeur()) && (m_listePieceBoard[i].getProfondeur() != zeroP))
         {
@@ -191,4 +203,10 @@ bool board::isQuartoProfondeur()
 bool board::isQuarto()
 {
     return isQuartoCouleur() || isQuartoForme() || isQuartoProfondeur() || isQuartoTaille();
+}
+
+bool board::isDraw()
+{
+    if(m_listePieceJouable.size()==0) return true;
+    else return false;
 }

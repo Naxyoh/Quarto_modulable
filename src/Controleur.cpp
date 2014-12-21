@@ -5,17 +5,22 @@ void ControleurConsole::selectionnerPiece(board &myBoard)
     int position = -1;
     do
     {
-        std::cout<<"Rentrer le numero de la piece que vous souhaitez donner (Veuillez rentrer un numero entre 1 et 16)\n";
+        std::cout<<std::endl<<"Rentrer le numero de la piece que vous souhaitez donner (Veuillez rentrer un numero entre 1 et 16)\n";
         std::cin>>position;
-        if(position<1 || position>16) std::cout<<"Numéro de piece invalide\n";
-    }while(position<1 || position>16);
+        if(position<1 || position>16 || std::cin.fail())
+        {
+            std::cout<<"Numero de piece invalide\n";
+            std::cin.clear();
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); //Pour eviter que ca plante si on rentre un char
+        }
+    }while(position<1 || position>16 || std::cin.fail());
 
     Piece pieceSelectionne = myBoard.getListePieceJouable()[position-1];
     std::cout<<"Vous avez selectionne "<<convertPieceToString(pieceSelectionne)<<std::endl;
     myBoard.setPieceSelectionnee(pieceSelectionne);
 }
 
-void ControleurConsole::jouerPiece(board &myBoard, Piece pieceAJouer)
+bool ControleurConsole::jouerPiece(board &myBoard, Piece pieceAJouer)
 {
     int pos = -1;
     do
@@ -27,6 +32,7 @@ void ControleurConsole::jouerPiece(board &myBoard, Piece pieceAJouer)
 
     myBoard.setListePieceBoard(pieceAJouer, pos-1);
     myBoard.eraseFromJouable(pos-1);
+    return true;
 }
 
 void ControleurSFML::selectionnerPiece(board &myBoard)
@@ -69,24 +75,23 @@ void ControleurSFML::selectionnerPiece(board &myBoard)
 }
 
 
-void ControleurSFML::jouerPiece(board& myBoard, Piece pieceAJouer)
+bool ControleurSFML::jouerPiece(board& myBoard, Piece pieceAJouer)
 {
     int position = -1;
     int indicePiece = 0;
     sf::Mouse::Button button = m_event.mouseButton.button;
 
-    for(indicePiece = 0; indicePiece<myBoard.getListePieceJouable().size(); indicePiece++)
+    for(size_t indicePieceTmp = 0; indicePieceTmp<myBoard.getListePieceJouable().size(); indicePieceTmp++)
     {
         if(myBoard.getListePieceJouable()[indicePiece] == pieceAJouer) break;
+        indicePiece = (int)indicePieceTmp;
     }
-
 
     if (button == sf::Mouse::Left)
     {
 
             if (m_event.mouseButton.y > 230 && m_event.mouseButton.y < 310)
             {
-                std::cout<<"on est entre y = 230 et 310"<<std::endl;
                 if (m_event.mouseButton.x > 160 && m_event.mouseButton.x < 240) position = 0;
                 else if (m_event.mouseButton.x > 240 && m_event.mouseButton.x < 320) position = 1;
                 else if (m_event.mouseButton.x > 320 && m_event.mouseButton.x < 400) position = 2;
@@ -94,7 +99,6 @@ void ControleurSFML::jouerPiece(board& myBoard, Piece pieceAJouer)
             }
             else if (m_event.mouseButton.y > 310 && m_event.mouseButton.y < 390)
             {
-                std::cout<<"on est entre y = 230 et 310"<<std::endl;
                 if (m_event.mouseButton.x > 160 && m_event.mouseButton.x < 240) position = 4;
                 else if (m_event.mouseButton.x > 240 && m_event.mouseButton.x < 320) position = 5;
                 else if (m_event.mouseButton.x > 320 && m_event.mouseButton.x < 400) position = 6;
@@ -102,7 +106,6 @@ void ControleurSFML::jouerPiece(board& myBoard, Piece pieceAJouer)
             }
             else if (m_event.mouseButton.y > 390 && m_event.mouseButton.y < 470)
             {
-                std::cout<<"on est entre y = 230 et 310"<<std::endl;
                 if (m_event.mouseButton.x > 160 && m_event.mouseButton.x < 240) position = 8;
                 else if (m_event.mouseButton.x > 240 && m_event.mouseButton.x < 320) position = 9;
                 else if (m_event.mouseButton.x > 320 && m_event.mouseButton.x < 400) position = 10;
@@ -110,7 +113,6 @@ void ControleurSFML::jouerPiece(board& myBoard, Piece pieceAJouer)
             }
             else if (m_event.mouseButton.y > 470 && m_event.mouseButton.y < 550)
             {
-                std::cout<<"on est entre y = 230 et 310"<<std::endl;
                 if (m_event.mouseButton.x > 160 && m_event.mouseButton.x < 240) position = 12;
                 else if (m_event.mouseButton.x > 240 && m_event.mouseButton.x < 320) position = 13;
                 else if (m_event.mouseButton.x > 320 && m_event.mouseButton.x < 400) position = 14;
@@ -118,24 +120,22 @@ void ControleurSFML::jouerPiece(board& myBoard, Piece pieceAJouer)
             }
             else
             {
-                std::cout<<"on est sortis"<<std::endl;
-                return;
+                return false;
             }
 
     }
     if(position == -1 || pieceAJouer == Piece() || myBoard.getListePieceBoard()[position] != Piece())
     {
         std::cout<<"position wrong ou piece vide"<<std::endl;
-       return;
+        return false;
     }
-    std::cout<<"piece a jouer : "<<convertPieceToString(pieceAJouer)<<" a placer a la position : "<<position<<std::endl;
-
     myBoard.setListePieceBoard(pieceAJouer, position);
     myBoard.eraseFromJouable(indicePiece);
-    std::cout<<"Liste board"<<std::endl;
-    for(int k = 0; k<myBoard.getListePieceBoard().size(); k++) std::cout<<k<<") "<<convertPieceToString(myBoard.getListePieceBoard()[k])<<std::endl;
-    std::cout<<"Liste jouable"<<std::endl;
-    for(int k = 0; k<myBoard.getListePieceJouable().size(); k++) std::cout<<k<<") "<<convertPieceToString(myBoard.getListePieceJouable()[k])<<std::endl;
+//    std::cout<<"Liste board"<<std::endl;
+//    for(size_t k = 0; k<myBoard.getListePieceBoard().size(); k++) std::cout<<k<<") "<<convertPieceToString(myBoard.getListePieceBoard()[k])<<std::endl;
+//    std::cout<<"Liste jouable"<<std::endl;
+//    for(size_t k = 0; k<myBoard.getListePieceJouable().size(); k++) std::cout<<k<<") "<<convertPieceToString(myBoard.getListePieceJouable()[k])<<std::endl;
+    return true;
 }
 
 void ControleurSFML::setEvent(sf::Event myEvent)

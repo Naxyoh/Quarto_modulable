@@ -7,7 +7,7 @@ class Controleur
 {
     public:
         virtual void selectionnerPiece(board&) = 0;
-        virtual void jouerPiece(board&, Piece) = 0;
+        virtual bool jouerPiece(board&, Piece) = 0;
     protected:
     private:
 };
@@ -16,14 +16,14 @@ class ControleurConsole : public Controleur
 {
     public:
         virtual void selectionnerPiece(board&);
-        virtual void jouerPiece(board&, Piece);
+        virtual bool jouerPiece(board&, Piece);
 };
 
 class ControleurSFML : public Controleur
 {
     public:
         virtual void selectionnerPiece(board&);
-        virtual void jouerPiece(board&, Piece);
+        virtual bool jouerPiece(board&, Piece);
         void setEvent(sf::Event);
         sf::Event &getEvent();
     protected :

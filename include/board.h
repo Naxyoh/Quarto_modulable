@@ -10,6 +10,8 @@ class board
         board();
         virtual ~board();
         int getSizeBoard();
+        void setJoueur(int);
+        int getJoueur();
         void setPieceSelectionnee(Piece);
         Piece getPieceSelectionnee();
         std::vector<Piece> getListePieceBoard();
@@ -21,8 +23,10 @@ class board
         bool isQuartoForme();
         bool isQuartoProfondeur();
         bool isQuarto();
+        bool isDraw();
     protected:
         int m_sizeBoard;
+        int m_joueur;
         Piece m_pieceSelectiionnee;
         std::vector<Piece> m_listePieceBoard;
         std::vector<Piece> m_listePieceJouable;

@@ -34,6 +34,7 @@ class Piece
 
 std::string convertPieceToString(Piece); // traduit les pieces en string pour l'affichage
 std::vector<Piece> creerToutePiece(); // creer un vecteur contenant toutes les pieces
+std::string toString(int integer);
 
 bool operator==( Piece a, Piece b);
 bool operator!=( Piece a, Piece b);

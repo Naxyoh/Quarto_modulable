@@ -1,44 +1,46 @@
 # depslib dependency file v1.0
-1418237631 source:c:\users\nax\documents\github\quarto_modulable\src\piece.cpp
+1418828224 source:c:\users\nax\documents\github\quarto_modulable\src\piece.cpp
 	"general.h"
 
-1418665343 c:\users\nax\documents\github\quarto_modulable\include\general.h
+1418828272 c:\users\nax\documents\github\quarto_modulable\include\general.h
 	<iostream>
 	<string>
 	<vector>
 	<cmath>
-	<typeinfo>
+	<limits>
+	<sstream>
 	<SFML/Graphics.hpp>
 	"board.h"
 	"Piece.h"
 	"affichage.h"
 	"Controleur.h"
+	"Engine.h"
 
-1418662577 c:\users\nax\documents\github\quarto_modulable\include\board.h
+1418831944 c:\users\nax\documents\github\quarto_modulable\include\board.h
 	"general.h"
 	"Piece.h"
 
-1418237631 c:\users\nax\documents\github\quarto_modulable\include\piece.h
+1418828224 c:\users\nax\documents\github\quarto_modulable\include\piece.h
 	"general.h"
 
-1418237631 c:\users\nax\documents\github\quarto_modulable\include\affichage.h
+1418828948 c:\users\nax\documents\github\quarto_modulable\include\affichage.h
 	"general.h"
 
 1418662802 source:c:\users\nax\documents\github\quarto_modulable\main.cpp
 	"general.h"
 
-1418664113 source:c:\users\nax\documents\github\quarto_modulable\src\affichage.cpp
+1418832738 source:c:\users\nax\documents\github\quarto_modulable\src\affichage.cpp
 	"general.h"
 
-1418662634 source:c:\users\nax\documents\github\quarto_modulable\src\board.cpp
+1418832114 source:c:\users\nax\documents\github\quarto_modulable\src\board.cpp
 	"general.h"
 	"Piece.h"
 	<cmath>
 
-1418662852 source:c:\users\nax\documents\github\quarto_modulable\src\controleur.cpp
+1418831686 source:c:\users\nax\documents\github\quarto_modulable\src\controleur.cpp
 	"general.h"
 
-1418662830 c:\users\nax\documents\github\quarto_modulable\include\controleur.h
+1418830276 c:\users\nax\documents\github\quarto_modulable\include\controleur.h
 	"general.h"
 
 1367993678 c:\sfml-2.1\include\sfml\graphics.hpp
@@ -750,4 +752,7 @@
 	<SFML/System/String.hpp>
 	<string>
 	<vector>
+
+1418807726 c:\users\nax\documents\github\quarto_modulable\include\engine.h
+	"general.h"
 

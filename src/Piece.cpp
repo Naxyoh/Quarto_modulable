@@ -100,6 +100,13 @@ std::vector<Piece> creerToutePiece()
     return listePiece;
 }
 
+std::string toString(int integer)
+{
+    ostringstream os;
+    os << integer;
+    return os.str();
+}
+
 bool operator==(Piece a, Piece b)
 {
     return ((int)a.getCouleur() == (int)b.getCouleur()) && ((int)a.getForme() == (int)b.getForme()) && ((int)a.getProfondeur() == (int)b.getProfondeur()) && ((int)a.getTaille() == (int)b.getTaille());

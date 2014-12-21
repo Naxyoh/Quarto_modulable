@@ -13,8 +13,11 @@ void AffichageConsole::drawBoard(board &monPlateau )
         cout<<"|";
         if(i==15) cout<<"\n+-------------------------------------------------------------------------------+\n";
     }
+}
 
-    cout<<"\n\nPiece Jouable : \n";
+void AffichageConsole::drawPieceJouable(board &monPlateau)
+{
+    cout<<"\nPiece Jouable : \n";
     for(size_t j = 0; j<monPlateau.getListePieceJouable().size(); j++)
     {
         cout<<j+1<<") ";
@@ -184,7 +187,7 @@ void AffichageSFML::drawBoard(board& monPlateau)
     pieceSelecSprite.setPosition(600,500);
 
     //Si quarto :
-    sf::Text quarto, restart, pieceSelecText;
+    sf::Text quarto, draw, restart,joueurText, joueurText2, pieceSelecText;
     sf::Font font;
     font.loadFromFile("Font/Arial.ttf");
     quarto.setString("Quarto !");
@@ -193,6 +196,13 @@ void AffichageSFML::drawBoard(board& monPlateau)
     quarto.setFont(font);
     quarto.setColor(sf::Color::Red);
     quarto.setPosition(270,100);
+    //Si match nul
+    draw.setString("Match Nul !");
+    draw.setCharacterSize(72);
+    draw.setStyle(sf::Text::Bold);
+    draw.setFont(font);
+    draw.setColor(sf::Color::Red);
+    draw.setPosition(250,100);
     //Gestion affichage reset
     restart.setString("Appuyez sur une touche pour rejouer !");
     restart.setCharacterSize(28);
@@ -200,8 +210,20 @@ void AffichageSFML::drawBoard(board& monPlateau)
     restart.setFont(font);
     restart.setColor(sf::Color::Red);
     restart.setPosition(150,175);
+    //Affichage Joueur
+    std::string joueurString = toString(monPlateau.getJoueur());
+    joueurText.setString("Joueur");
+    joueurText2.setString(joueurString);
+    joueurText.setCharacterSize(30);
+    joueurText2.setCharacterSize(30);
+    joueurText.setFont(font);
+    joueurText2.setFont(font);
+    joueurText.setColor(sf::Color::Black);
+    joueurText2.setColor(sf::Color::Black);
+    joueurText.setPosition(525,400);
+    joueurText2.setPosition(625, 400);
     //Piece selectionnee
-    pieceSelecText.setString("Piece selectionne : ");
+
     pieceSelecText.setCharacterSize(20);
     pieceSelecText.setFont(font);
     pieceSelecText.setColor(sf::Color::Black);
@@ -211,7 +233,21 @@ void AffichageSFML::drawBoard(board& monPlateau)
     m_mainWindow.draw(fondSprite);
     m_mainWindow.draw(grilleSprite);
     m_mainWindow.draw(pieceSelecSprite);
-    if(monPlateau.getPieceSelectionnee() != Piece()) m_mainWindow.draw(pieceSelecText);
+    if(monPlateau.getPieceSelectionnee() != Piece())
+    {
+        pieceSelecText.setString("Vous devez jouer : ");
+        m_mainWindow.draw(pieceSelecText);
+    }
+    else
+    {
+        pieceSelecText.setString("Veuillez selectionner une piece ");
+        m_mainWindow.draw(pieceSelecText);
+    }
+    if(monPlateau.getJoueur() != 10)
+    {
+        m_mainWindow.draw(joueurText);
+        m_mainWindow.draw(joueurText2);
+    }
     for(size_t i = 0; i<listeSpritePieceBoard.size(); i++)
     {
         m_mainWindow.draw(listeSpritePieceBoard[i]);
@@ -223,6 +259,11 @@ void AffichageSFML::drawBoard(board& monPlateau)
     if(monPlateau.isQuarto())
     {
         m_mainWindow.draw(quarto);
+        m_mainWindow.draw(restart);
+    }
+    if(monPlateau.isDraw())
+    {
+        m_mainWindow.draw(draw);
         m_mainWindow.draw(restart);
     }
     m_mainWindow.display();
