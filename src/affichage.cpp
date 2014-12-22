@@ -211,7 +211,7 @@ void AffichageSFML::drawBoard(board& monPlateau)
     restart.setColor(sf::Color::Red);
     restart.setPosition(150,175);
     //Affichage Joueur
-    std::string joueurString = toString(monPlateau.getJoueur());
+    std::string joueurString = toString(monPlateau.getJoueurActuel());
     joueurText.setString("Joueur");
     joueurText2.setString(joueurString);
     joueurText.setCharacterSize(30);
@@ -243,7 +243,7 @@ void AffichageSFML::drawBoard(board& monPlateau)
         pieceSelecText.setString("Veuillez selectionner une piece ");
         m_mainWindow.draw(pieceSelecText);
     }
-    if(monPlateau.getJoueur() != 10)
+    if(monPlateau.getJoueurActuel() != 10)
     {
         m_mainWindow.draw(joueurText);
         m_mainWindow.draw(joueurText2);

@@ -4,7 +4,7 @@
 
 using namespace std;
 
-board::board() : m_sizeBoard(4), m_joueur(0), m_pieceSelectiionnee(Piece()), m_listePieceJouable(creerToutePiece())
+board::board() : m_sizeBoard(4), m_listeJoueur(), m_joueurActuel(0), m_pieceSelectiionnee(Piece()), m_listePieceJouable(creerToutePiece())
 {
     for(int i = 0; i< m_sizeBoard*m_sizeBoard; i++)
     {
@@ -17,14 +17,35 @@ board::~board()
     //dtor
 }
 
-void board::setJoueur(int numJoueur)
+void board::setListeJoueur(std::vector<joueur> listeJoueur)
 {
-    m_joueur = numJoueur;
+    m_listeJoueur = listeJoueur;
 }
 
-int board::getJoueur()
+void board::ajouterListeJoueur(joueur joueurAAjouter, int position)
 {
-    return m_joueur;
+    m_listeJoueur.insert(m_listeJoueur.begin()+position, joueurAAjouter);
+}
+
+std::vector<joueur> board::getListeJoueur()
+{
+    return m_listeJoueur;
+}
+
+void board::changementJoueur()
+{
+    if(m_joueurActuel == 1 && m_pieceSelectiionnee != Piece()) m_joueurActuel = 2;
+    else if(m_joueurActuel == 2 && m_pieceSelectiionnee != Piece()) m_joueurActuel =1;
+}
+
+void board::setJoueurActuel(int numero)
+{
+    m_joueurActuel = numero;
+}
+
+int board::getJoueurActuel()
+{
+    return m_joueurActuel;
 }
 
 //Renvoie le vecteur des pièces présentes sur le plateau

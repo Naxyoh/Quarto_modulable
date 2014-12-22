@@ -7,6 +7,7 @@
 #include <cmath>
 #include <limits>
 #include <sstream>
+#include <ctime>
 
 //include pour la partie graphique
 #include <SFML/Graphics.hpp>
@@ -15,7 +16,8 @@
 #include "Piece.h"
 #include "affichage.h"
 #include "Controleur.h"
-#include "Engine.h"
+#include "IA.h"
+
 
 
 #endif // GENERAL_H_INCLUDED
