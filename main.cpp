@@ -13,10 +13,11 @@ int main()
     srand(time(NULL));
 
     board monPlateau = board();
-    joueur j1 = humain, j2 = humain;
+    joueur j1 = humain, j2 = facile;
     monPlateau.ajouterListeJoueur(j1,0);
     monPlateau.ajouterListeJoueur(j2,1);
     monPlateau.setJoueurActuel(1);
+    monPlateau.setJoueur(humain);
 
     if(type == Console)
     {
@@ -29,9 +30,9 @@ int main()
             //Avant de rentrer dans la boucle on demande au joueur 1 de selectionner une piece
             if(nouveau == true)
             {
-                        cout<<"Au tour du Joueur "<<monPlateau.getJoueurActuel()<<endl;
-            affichConsole.drawPieceJouable(monPlateau);
-            controlConsole.selectionnerPiece(monPlateau);
+                cout<<"Au tour du Joueur "<<monPlateau.getJoueurActuel()<<endl;
+                affichConsole.drawPieceJouable(monPlateau);
+                controlConsole.selectionnerPiece(monPlateau);
             }
 
             if(monPlateau.isQuarto() != true)
@@ -39,6 +40,7 @@ int main()
                 nouveau = false;
                 //Changement de joueur
                 monPlateau.changementJoueur();
+
                 system("cls");
 
                 //Affichage du plateau
@@ -51,9 +53,6 @@ int main()
 
                 //Playing of the piece
                 controlConsole.jouerPiece(monPlateau, monPlateau.getPieceSelectionnee());
-
-                //Si Quarto on sort de la boucle
-                //if(monPlateau.isQuarto()) break;
 
                 //On efface le contenu de la console et on affiche le board et la liste de pieces jouables
                 system("cls");
@@ -90,17 +89,14 @@ int main()
             while (affich.getMainWindow().pollEvent(event))
             {
                 control.setEvent(event);
-                if (control.getEvent().type == sf::Event::Closed) affich.getMainWindow().close();
+                if (event.type == sf::Event::Closed) affich.getMainWindow().close();
 
-                if (control.getEvent().type == sf::Event::MouseButtonPressed)
-                {
+//                if (event.type == sf::Event::MouseButtonPressed)
+//                {
+                   // cout<<"joueur "<<(int) monPlateau.getJoueur()<<endl;
                     control.selectionnerPiece(monPlateau); // On selectionne une piece
-                    if(monPlateau.getPieceSelectionnee() != Piece() && (control.getEvent().mouseButton.y > 230 && control.getEvent().mouseButton.y < 550) && (control.getEvent().mouseButton.x > 160 && control.getEvent().mouseButton.x < 480)) // Necessaire pour synchroniser le jeu et le positionnement
-                    {
-                        control.jouerPiece(monPlateau, monPlateau.getPieceSelectionnee());
-                    }
-                }
-                if (control.getEvent().type == sf::Event::KeyPressed) control.restart(monPlateau);
+                    control.jouerPiece(monPlateau, monPlateau.getPieceSelectionnee());
+                if (event.type == sf::Event::KeyPressed) control.restart(monPlateau);
             }
             affich.drawBoard(monPlateau);
         }

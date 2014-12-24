@@ -13,10 +13,10 @@ class IA
         int getLevel();
 
         //Fonction qui calcule le prochain coup
-        void calcJoue(board, Piece);
+        void calcJoue(board&, Piece);
 
         //Fonction qui calcule quelle piece donner
-        Piece calcDonner(board);
+        Piece calcDonner(board&);
 
         //Fonction pour le calcul de min max
         int calcMin(board, int);

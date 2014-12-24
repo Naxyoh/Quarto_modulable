@@ -20,8 +20,9 @@ int IA::getLevel()
     return m_level;
 }
 
-void IA::calcJoue(board myBoard, Piece pieceAJouer)
+void IA::calcJoue(board& myBoard, Piece pieceAJouer)
 {
+    std::cout<<"calcJoue"<<std::endl;
     if(m_level == 0)
     {
         int pos = -1;
@@ -29,7 +30,7 @@ void IA::calcJoue(board myBoard, Piece pieceAJouer)
         {
            pos = rand() % 15;
         }
-        while (myBoard.getListePieceBoard()[pos] == Piece());
+        while (myBoard.getListePieceBoard()[pos] != Piece());
         myBoard.setListePieceBoard(pieceAJouer, pos);
     }
 
@@ -45,8 +46,9 @@ void IA::calcJoue(board myBoard, Piece pieceAJouer)
 
 }
 
-Piece IA::calcDonner(board myBoard)
+Piece IA::calcDonner(board& myBoard)
 {
+    std::cout<<"CalcDonner "<< m_level <<std::endl;
     Piece pieceADonner = Piece();
     if(m_level == 0)
     {
@@ -54,9 +56,10 @@ Piece IA::calcDonner(board myBoard)
 //        do
 //        {
            pos = rand() % (myBoard.getListePieceJouable().size()-1);
+           std::cout<<"CalcDonner "<< pos <<std::endl;
         //}while (myBoard.getListePieceBoard()[pos] == Piece());
         pieceADonner = myBoard.getListePieceJouable()[pos];
-        myBoard.eraseFromJouable(pos);
+        std::cout<<"CalcDonner "<< convertPieceToString(pieceADonner) <<std::endl;
     }
 
     else if(m_level == 1)

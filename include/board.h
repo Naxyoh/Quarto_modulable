@@ -22,6 +22,9 @@ class board
         void setJoueurActuel(int);
         int getJoueurActuel();
 
+        void setJoueur(joueur);
+        joueur getJoueur();
+
         void setPieceSelectionnee(Piece);
         Piece getPieceSelectionnee();
 
@@ -40,6 +43,7 @@ class board
     protected:
         int m_sizeBoard;
         std::vector<joueur> m_listeJoueur;
+        joueur m_joueur;
         int m_joueurActuel;
         Piece m_pieceSelectiionnee;
         std::vector<Piece> m_listePieceBoard;

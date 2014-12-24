@@ -4,7 +4,7 @@
 
 using namespace std;
 
-board::board() : m_sizeBoard(4), m_listeJoueur(), m_joueurActuel(0), m_pieceSelectiionnee(Piece()), m_listePieceJouable(creerToutePiece())
+board::board() : m_sizeBoard(4), m_listeJoueur(), m_joueur(humain), m_joueurActuel(0), m_pieceSelectiionnee(Piece()), m_listePieceJouable(creerToutePiece())
 {
     for(int i = 0; i< m_sizeBoard*m_sizeBoard; i++)
     {
@@ -36,6 +36,7 @@ void board::changementJoueur()
 {
     if(m_joueurActuel == 1 && m_pieceSelectiionnee != Piece()) m_joueurActuel = 2;
     else if(m_joueurActuel == 2 && m_pieceSelectiionnee != Piece()) m_joueurActuel =1;
+    m_joueur = m_listeJoueur[m_joueurActuel-1];
 }
 
 void board::setJoueurActuel(int numero)
@@ -46,6 +47,16 @@ void board::setJoueurActuel(int numero)
 int board::getJoueurActuel()
 {
     return m_joueurActuel;
+}
+
+void board::setJoueur(joueur monJoueur)
+{
+    m_joueur = monJoueur;
+}
+
+joueur board::getJoueur()
+{
+    return m_joueur;
 }
 
 //Renvoie le vecteur des pièces présentes sur le plateau
