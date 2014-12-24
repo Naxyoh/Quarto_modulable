@@ -91,16 +91,13 @@ int main()
                 control.setEvent(event);
                 if (event.type == sf::Event::Closed) affich.getMainWindow().close();
 
-//                if (event.type == sf::Event::MouseButtonPressed)
-//                {
-                   // cout<<"joueur "<<(int) monPlateau.getJoueur()<<endl;
                     control.selectionnerPiece(monPlateau); // On selectionne une piece
                     control.jouerPiece(monPlateau, monPlateau.getPieceSelectionnee());
+
                 if (event.type == sf::Event::KeyPressed) control.restart(monPlateau);
             }
             affich.drawBoard(monPlateau);
         }
     }
-
     return 0;
 }

@@ -32,6 +32,14 @@ void IA::calcJoue(board& myBoard, Piece pieceAJouer)
         }
         while (myBoard.getListePieceBoard()[pos] != Piece());
         myBoard.setListePieceBoard(pieceAJouer, pos);
+        myBoard.setPieceSelectionnee(Piece());
+        int indicePiece = -1;
+        for(size_t indicePieceTmp = 0; indicePieceTmp<myBoard.getListePieceJouable().size(); indicePieceTmp++)
+        {
+            if(myBoard.getListePieceJouable()[indicePiece] == pieceAJouer) break;
+            indicePiece = (int)indicePieceTmp;
+        }
+        myBoard.eraseFromJouable(indicePiece);
     }
 
     else if(m_level == 1)

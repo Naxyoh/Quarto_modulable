@@ -27,7 +27,7 @@
 1418828948 c:\users\nax\documents\github\quarto_modulable\include\affichage.h
 	"general.h"
 
-1419430059 source:c:\users\nax\documents\github\quarto_modulable\main.cpp
+1419430808 source:c:\users\nax\documents\github\quarto_modulable\main.cpp
 	"general.h"
 
 1419259741 source:c:\users\nax\documents\github\quarto_modulable\src\affichage.cpp
@@ -38,7 +38,7 @@
 	"Piece.h"
 	<cmath>
 
-1419430188 source:c:\users\nax\documents\github\quarto_modulable\src\controleur.cpp
+1419430597 source:c:\users\nax\documents\github\quarto_modulable\src\controleur.cpp
 	"general.h"
 
 1419273771 c:\users\nax\documents\github\quarto_modulable\include\controleur.h
@@ -760,6 +760,6 @@
 1419428408 c:\users\nax\documents\github\quarto_modulable\include\ia.h
 	"general.h"
 
-1419430306 source:c:\users\nax\documents\github\quarto_modulable\src\ia.cpp
+1419431017 source:c:\users\nax\documents\github\quarto_modulable\src\ia.cpp
 	"IA.h"
 
