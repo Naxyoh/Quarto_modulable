@@ -2,36 +2,65 @@
 
 void ControleurConsole::selectionnerPiece(board &myBoard)
 {
-    int position = -1;
-    do
+    if(myBoard.isDraw() != true && myBoard.isQuarto() != true)
     {
-        std::cout<<std::endl<<"Rentrer le numero de la piece que vous souhaitez donner (Veuillez rentrer un numero entre 1 et 16)\n";
-        std::cin>>position;
-        if(position<1 || position>16 || std::cin.fail())
+        if(myBoard.getJoueur() == humain)
         {
-            std::cout<<"Numero de piece invalide\n";
-            std::cin.clear();
-            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); //Pour eviter que ca plante si on rentre un char
-        }
-    }while(position<1 || position>16 || std::cin.fail());
+            int position = -1;
+            do
+            {
+                std::cout<<std::endl<<"Rentrer le numero de la piece que vous souhaitez donner (Veuillez rentrer un numero entre 1 et 16)\n";
+                std::cin>>position;
+                if(position<1 || position>16 || std::cin.fail())
+                {
+                    std::cout<<"Numero de piece invalide\n";
+                    std::cin.clear();
+                    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); //Pour eviter que ca plante si on rentre un char
+                }
+            }
+            while(position<1 || position>16 || std::cin.fail());
 
-    Piece pieceSelectionne = myBoard.getListePieceJouable()[position-1];
-    std::cout<<"Vous avez selectionne "<<convertPieceToString(pieceSelectionne)<<std::endl;
-    myBoard.setPieceSelectionnee(pieceSelectionne);
+            Piece pieceSelectionne = myBoard.getListePieceJouable()[position-1];
+            std::cout<<"Vous avez selectionne "<<convertPieceToString(pieceSelectionne)<<std::endl;
+            myBoard.setPieceSelectionnee(pieceSelectionne);
+        }
+        else if (myBoard.getJoueur() == facile)
+        {
+            std::cout<<"IA"<<std::endl;
+            IA ordi = IA();
+            ordi.setLevel(0);
+            myBoard.setPieceSelectionnee(ordi.calcDonner(myBoard));
+        }
+    }
+    return;
 }
 
 void ControleurConsole::jouerPiece(board &myBoard, Piece pieceAJouer)
 {
-    int pos = -1;
-    do
+    if(myBoard.isDraw() != true && myBoard.isQuarto() != true)
     {
-        std::cout<<"Quelle position ? (Veuillez rentrer une position entre 1 et 16)\n";
-        std::cin>>pos;
-        if(pos<1 || pos>16 || (myBoard.getListePieceBoard()[pos-1] != Piece())) std::cout<<"Position invalide\n";
-    } while(pos<1 || pos>16 || (myBoard.getListePieceBoard()[pos-1] != Piece()));
+        if(myBoard.getJoueur() == humain)
+        {
+        int pos = -1;
+        do
+        {
+            std::cout<<"Quelle position ? (Veuillez rentrer une position entre 1 et 16)\n";
+            std::cin>>pos;
+            if(pos<1 || pos>16 || (myBoard.getListePieceBoard()[pos-1] != Piece())) std::cout<<"Position invalide\n";
+        }
+        while(pos<1 || pos>16 || (myBoard.getListePieceBoard()[pos-1] != Piece()));
 
-    myBoard.setListePieceBoard(pieceAJouer, pos-1);
-    myBoard.eraseFromJouable(pos-1);
+        myBoard.setListePieceBoard(pieceAJouer, pos-1);
+        myBoard.eraseFromJouable(pos-1);
+    }
+    else if(myBoard.getJoueur() == facile)
+    {
+        std::cout<<"IA"<<std::endl;
+        IA ordi = IA();
+        ordi.setLevel(0);
+        ordi.calcJoue(myBoard, pieceAJouer);
+    }
+    }
     return;
 }
 

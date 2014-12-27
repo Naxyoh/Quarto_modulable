@@ -19,6 +19,7 @@ int main()
     monPlateau.setJoueurActuel(1);
     monPlateau.setJoueur(humain);
 
+//Pour jouer dans de bonnes condition il faut une fenetre de largeur au moins 90 et hauteur 50
     if(type == Console)
     {
         AffichageConsole affichConsole;

@@ -87,6 +87,13 @@ int board::getSizeBoard()
     return m_sizeBoard;
 }
 
+std::list<int> board::genererPositionPossible(Piece pieceDonnee)
+{
+    std::list<int> positionPossible;
+//    for(size_t i = 0; i < m_listePieceBoard)
+    return positionPossible;
+}
+
 //Renvoie le vecteur des pièces jouables
 std::vector<Piece> board::getListePieceJouable()
 {

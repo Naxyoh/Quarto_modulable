@@ -31,6 +31,8 @@ class board
         std::vector<Piece> getListePieceBoard();
         void setListePieceBoard(Piece, int);
 
+        std::list<int> genererPositionPossible(Piece pieceDonnee);
+
         std::vector<Piece> getListePieceJouable();
         void eraseFromJouable(int);
         bool isQuartoCouleur();

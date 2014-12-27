@@ -70,13 +70,15 @@ string convertPieceToString(Piece piece)
     else pieceString += "Petit";
 
     if(piece.getForme()==rond) pieceString += "Rond";
-    else if(piece.getForme()==zeroF) pieceString += " ";
+    else if(piece.getForme()==zeroF) pieceString += "  ";
     else pieceString+="Carre";
 
     if(piece.getProfondeur() == plein) pieceString += "Plein";
     else if(piece.getProfondeur() == zeroP) pieceString += "         ";
     else pieceString += "Creux";
 
+    if(piece.getCouleur() == noir) pieceString += " ";
+    if(piece.getForme() == rond) pieceString += " ";
     return pieceString;
 }
 
