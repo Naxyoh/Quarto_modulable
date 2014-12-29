@@ -70,6 +70,7 @@ void ControleurConsole::restart(board& myBoard)
     std::vector<joueur> liste;
     liste = myBoard.getListeJoueur();
     myBoard = board();
+    myBoard.setJoueur(liste[0]);
     myBoard.setJoueurActuel(1);
     myBoard.setListeJoueur(liste);
 }
@@ -199,7 +200,7 @@ void ControleurSFML::jouerPiece(board& myBoard, Piece pieceAJouer)
 
         else if(myBoard.getJoueur() == facile)
         {
-            std::cout<<"IA"<<std::endl;
+//            std::cout<<"IA"<<std::endl;
             IA ordi = IA();
             ordi.setLevel(0);
             ordi.calcJoue(myBoard, pieceAJouer);
@@ -215,8 +216,8 @@ void ControleurSFML::restart(board& myBoard)
         std::vector<joueur> liste;
         liste = myBoard.getListeJoueur();
         myBoard = board();
+        myBoard.setJoueur(liste[0]);
         myBoard.setJoueurActuel(1);
-        myBoard.setJoueur(humain);
         myBoard.setListeJoueur(liste);
     }
 }

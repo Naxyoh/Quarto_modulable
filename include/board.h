@@ -3,14 +3,17 @@
 
 #include "general.h"
 #include "Piece.h"
-
-enum joueur{humain, facile, moyen, difficile};
+enum typeUtils {Console=1, SFML};
+enum joueur{humain =1, facile, moyen, difficile};
 
 class board
 {
     public:
         board();
         virtual ~board();
+
+        typeUtils getType();
+        void setType(typeUtils);
 
         int getSizeBoard();
 
@@ -33,6 +36,7 @@ class board
 
         std::list<int> genererNextCoup();
 
+        int getConnexiteCouleur(int pos);
         int getConnexite(int pos);
 
         std::vector<Piece> getListePieceJouable();
@@ -45,6 +49,7 @@ class board
         bool isDraw();
 
     protected:
+        typeUtils m_type;
         int m_sizeBoard;
         std::vector<joueur> m_listeJoueur;
         joueur m_joueur;
@@ -54,5 +59,9 @@ class board
         std::vector<Piece> m_listePieceJouable;
     private:
 };
+
+void initType(board& myBoard);
+void initJoueur(board& myBoard);
+void init(board&); // Sert à initialiser le jeu
 
 #endif // BOARD_H

@@ -28,7 +28,7 @@ void IA::calcJoue(board& myBoard, Piece pieceAJouer)
         int pos = -1;
         do
         {
-           pos = rand() % 15;
+           pos = rand() % 16;
         }
         while (myBoard.getListePieceBoard()[pos] != Piece());
         myBoard.setListePieceBoard(pieceAJouer, pos);
@@ -63,7 +63,7 @@ Piece IA::calcDonner(board& myBoard)
         int pos = -1;
 //        do
 //        {
-           pos = rand() % (myBoard.getListePieceJouable().size()-1);
+           pos = rand() % (myBoard.getListePieceJouable().size());
            std::cout<<"CalcDonner "<< pos <<std::endl;
         //}while (myBoard.getListePieceBoard()[pos] == Piece());
         pieceADonner = myBoard.getListePieceJouable()[pos];
@@ -106,5 +106,5 @@ int minimax(board &myBoard, int depth, bool maxingPlayer)
     {
 
     }
-
+    return 0;
 }

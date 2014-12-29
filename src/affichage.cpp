@@ -186,9 +186,9 @@ void AffichageSFML::drawBoard(board& monPlateau)
     sf::Sprite pieceSelecSprite(pieceSelec);
     pieceSelecSprite.setPosition(600,500);
 
-    //Si quarto :
-    sf::Text quarto, draw, restart,joueurText, joueurText2, pieceSelecText;
+    sf::Text quarto, draw, restart,joueurText, joueurText2, pieceSelecText, gagnant;
     sf::Font font;
+    //Si quarto :
     font.loadFromFile("Font/Arial.ttf");
     quarto.setString("Quarto !");
     quarto.setCharacterSize(72);
@@ -210,6 +210,7 @@ void AffichageSFML::drawBoard(board& monPlateau)
     restart.setFont(font);
     restart.setColor(sf::Color::Red);
     restart.setPosition(150,175);
+
     //Affichage Joueur
     std::string joueurString = toString(monPlateau.getJoueurActuel());
     joueurText.setString("Joueur");
@@ -218,12 +219,26 @@ void AffichageSFML::drawBoard(board& monPlateau)
     joueurText2.setCharacterSize(30);
     joueurText.setFont(font);
     joueurText2.setFont(font);
-    joueurText.setColor(sf::Color::Black);
-    joueurText2.setColor(sf::Color::Black);
+    if(monPlateau.isQuarto() == false)
+    {
+        joueurText.setColor(sf::Color::Black);
+        joueurText2.setColor(sf::Color::Black);
+    }
+    else
+    {
+        joueurText.setColor(sf::Color::Red);
+        joueurText2.setColor(sf::Color::Red);
+    }
     joueurText.setPosition(525,400);
     joueurText2.setPosition(625, 400);
-    //Piece selectionnee
 
+    //Joueur gagnant
+    gagnant.setString("gagne !");
+    gagnant.setCharacterSize(30);
+    gagnant.setFont(font);
+    gagnant.setColor(sf::Color::Red);
+    gagnant.setPosition(655,400);
+    //Piece selectionnee
     pieceSelecText.setCharacterSize(20);
     pieceSelecText.setFont(font);
     pieceSelecText.setColor(sf::Color::Black);
@@ -236,18 +251,18 @@ void AffichageSFML::drawBoard(board& monPlateau)
     if(monPlateau.getPieceSelectionnee() != Piece())
     {
         pieceSelecText.setString("Vous devez jouer : ");
+        if(monPlateau.isDraw() == false && monPlateau.isQuarto() == false)
         m_mainWindow.draw(pieceSelecText);
     }
     else
     {
         pieceSelecText.setString("Veuillez selectionner une piece ");
+        if(monPlateau.isDraw() == false && monPlateau.isQuarto() == false)
         m_mainWindow.draw(pieceSelecText);
     }
-    if(monPlateau.getJoueurActuel() != 10)
-    {
-        m_mainWindow.draw(joueurText);
-        m_mainWindow.draw(joueurText2);
-    }
+    m_mainWindow.draw(joueurText);
+    m_mainWindow.draw(joueurText2);
+
     for(size_t i = 0; i<listeSpritePieceBoard.size(); i++)
     {
         m_mainWindow.draw(listeSpritePieceBoard[i]);
@@ -260,6 +275,7 @@ void AffichageSFML::drawBoard(board& monPlateau)
     {
         m_mainWindow.draw(quarto);
         m_mainWindow.draw(restart);
+        m_mainWindow.draw(gagnant);
     }
     if(monPlateau.isDraw())
     {

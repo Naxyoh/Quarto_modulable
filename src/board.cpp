@@ -17,6 +17,16 @@ board::~board()
     //dtor
 }
 
+typeUtils board::getType()
+{
+    return m_type;
+}
+
+void board::setType(typeUtils myType)
+{
+    m_type = myType;
+}
+
 void board::setListeJoueur(std::vector<joueur> listeJoueur)
 {
     m_listeJoueur = listeJoueur;
@@ -96,10 +106,44 @@ std::list<int> board::genererNextCoup()
     }
     return positionPossible;
 }
-//int board::getConnexiteCouleur(int position,int pas)
-//{
+int board::getConnexiteCouleur(int pos)
+{
+    int connexite = 0;
+    //On regarde la ligne
+    int posH = pos%4;
+    if( (m_listePieceBoard[posH].getCouleur() == m_listePieceBoard[posH+1].getCouleur()) ||
+        (m_listePieceBoard[posH].getCouleur() == m_listePieceBoard[posH+2].getCouleur()) ||
+        (m_listePieceBoard[posH].getCouleur() == m_listePieceBoard[posH+3].getCouleur()) ||
+        (m_listePieceBoard[posH+1].getCouleur() == m_listePieceBoard[posH+2].getCouleur()) ||
+        (m_listePieceBoard[posH+1].getCouleur() == m_listePieceBoard[posH+3].getCouleur()) ||
+        (m_listePieceBoard[posH+2].getCouleur() == m_listePieceBoard[posH+3].getCouleur()))
+            connexite += 1;
 
-//}
+    if( ((m_listePieceBoard[posH].getCouleur() == m_listePieceBoard[posH+1].getCouleur()) && (m_listePieceBoard[posH].getCouleur() == m_listePieceBoard[posH+2].getCouleur())) ||
+        ((m_listePieceBoard[posH].getCouleur() == m_listePieceBoard[posH+1].getCouleur()) && (m_listePieceBoard[posH].getCouleur() == m_listePieceBoard[posH+3].getCouleur())) ||
+        ((m_listePieceBoard[posH].getCouleur() == m_listePieceBoard[posH+2].getCouleur()) && (m_listePieceBoard[posH].getCouleur() == m_listePieceBoard[posH+3].getCouleur())) ||
+        ((m_listePieceBoard[posH+1].getCouleur() == m_listePieceBoard[posH+2].getCouleur()) && (m_listePieceBoard[posH+1].getCouleur() == m_listePieceBoard[posH+3].getCouleur())))
+                connexite += 2;
+
+    //On regarde la colonne
+    int posV = pos/4;
+    if( (m_listePieceBoard[posV].getCouleur() == m_listePieceBoard[posV+4].getCouleur()) ||
+        (m_listePieceBoard[posV].getCouleur() == m_listePieceBoard[posV+8].getCouleur()) ||
+        (m_listePieceBoard[posV].getCouleur() == m_listePieceBoard[posV+12].getCouleur()) ||
+        (m_listePieceBoard[posV+4].getCouleur() == m_listePieceBoard[posV+8].getCouleur()) ||
+        (m_listePieceBoard[posV+4].getCouleur() == m_listePieceBoard[posV+12].getCouleur()) ||
+        (m_listePieceBoard[posV+8].getCouleur() == m_listePieceBoard[posV+12].getCouleur()))
+            connexite += 1;
+
+    if( ((m_listePieceBoard[posV].getCouleur() == m_listePieceBoard[posV+4].getCouleur()) && (m_listePieceBoard[posV].getCouleur() == m_listePieceBoard[posV+8].getCouleur())) ||
+        ((m_listePieceBoard[posV].getCouleur() == m_listePieceBoard[posV+4].getCouleur()) && (m_listePieceBoard[posV].getCouleur() == m_listePieceBoard[posV+12].getCouleur())) ||
+        ((m_listePieceBoard[posV].getCouleur() == m_listePieceBoard[posV+8].getCouleur()) && (m_listePieceBoard[posV].getCouleur() == m_listePieceBoard[posV+12].getCouleur())) ||
+        ((m_listePieceBoard[posV+4].getCouleur() == m_listePieceBoard[posV+8].getCouleur()) && (m_listePieceBoard[posV+4].getCouleur() == m_listePieceBoard[posV+12].getCouleur())))
+                connexite += 2;
+
+    return connexite;
+
+}
 int board::getConnexite(int pos)
 {
     int connexite = 0;
@@ -136,6 +180,45 @@ int board::getConnexite(int pos)
         if((m_listePieceBoard[posH].getProfondeur() == m_listePieceBoard[posH+1].getProfondeur()) ||
            (m_listePieceBoard[posH].getProfondeur() == m_listePieceBoard[posH+2].getProfondeur()) ||
            (m_listePieceBoard[posH].getProfondeur() == m_listePieceBoard[posH+3].getProfondeur()))
+                connexite += 1;
+        if(((m_listePieceBoard[posH].getProfondeur() == m_listePieceBoard[posH+1].getProfondeur()) && (m_listePieceBoard[posH+1].getProfondeur() == m_listePieceBoard[posH+2].getProfondeur())) ||
+           ((m_listePieceBoard[posH].getProfondeur() == m_listePieceBoard[posH+1].getProfondeur()) && (m_listePieceBoard[posH+1].getProfondeur() == m_listePieceBoard[posH+3].getProfondeur())) ||
+           ((m_listePieceBoard[posH].getProfondeur() == m_listePieceBoard[posH+2].getProfondeur()) && (m_listePieceBoard[posH+2].getProfondeur() == m_listePieceBoard[posH+3].getProfondeur())))
+                connexite += 2;
+
+    //Vertical
+    int posV = pos/4;
+        //Couleur
+        if((m_listePieceBoard[posV].getCouleur() == m_listePieceBoard[posV+4].getCouleur()) ||
+           (m_listePieceBoard[posV].getCouleur() == m_listePieceBoard[posV+8].getCouleur()) ||
+           (m_listePieceBoard[posV].getCouleur() == m_listePieceBoard[posV+12].getCouleur()))
+                connexite += 1;
+        if(((m_listePieceBoard[posV].getCouleur() == m_listePieceBoard[posV+4].getCouleur()) && (m_listePieceBoard[posV+4].getCouleur() == m_listePieceBoard[posV+8].getCouleur())) ||
+           ((m_listePieceBoard[posV].getCouleur() == m_listePieceBoard[posV+8].getCouleur()) && (m_listePieceBoard[posV+4].getCouleur() == m_listePieceBoard[posV+12].getCouleur())) ||
+           ((m_listePieceBoard[posV].getCouleur() == m_listePieceBoard[posV+12].getCouleur()) && (m_listePieceBoard[posV+8].getCouleur() == m_listePieceBoard[posV+12].getCouleur())))
+                connexite += 2;
+        //Forme
+        if((m_listePieceBoard[posV].getForme() == m_listePieceBoard[posV+1].getForme()) ||
+           (m_listePieceBoard[posV].getForme() == m_listePieceBoard[posV+2].getForme()) ||
+           (m_listePieceBoard[posV].getForme() == m_listePieceBoard[posV+3].getForme()))
+                connexite += 1;
+        if(((m_listePieceBoard[posV].getForme() == m_listePieceBoard[posV+4].getForme()) && (m_listePieceBoard[posV+4].getForme() == m_listePieceBoard[posV+8].getForme())) ||
+           ((m_listePieceBoard[posV].getForme() == m_listePieceBoard[posV+4].getForme()) && (m_listePieceBoard[posV+4].getForme() == m_listePieceBoard[posV+12].getForme())) ||
+           ((m_listePieceBoard[posV].getForme() == m_listePieceBoard[posV+8].getForme()) && (m_listePieceBoard[posV+8].getForme() == m_listePieceBoard[posV+12].getForme())))
+                connexite += 2;
+        //Taille
+        if((m_listePieceBoard[posV].getTaille() == m_listePieceBoard[posV+4].getTaille()) ||
+           (m_listePieceBoard[posV].getTaille() == m_listePieceBoard[posV+8].getTaille()) ||
+           (m_listePieceBoard[posV].getTaille() == m_listePieceBoard[posV+12].getTaille()))
+                connexite += 1;
+        if(((m_listePieceBoard[posV].getTaille() == m_listePieceBoard[posV+4].getTaille()) && (m_listePieceBoard[posV+4].getTaille() == m_listePieceBoard[posH+8].getTaille())) ||
+           ((m_listePieceBoard[posV].getTaille() == m_listePieceBoard[posV+4].getTaille()) && (m_listePieceBoard[posV+4].getTaille() == m_listePieceBoard[posH+12].getTaille())) ||
+           ((m_listePieceBoard[posV].getTaille() == m_listePieceBoard[posV+8].getTaille()) && (m_listePieceBoard[posV+8].getTaille() == m_listePieceBoard[posH+12].getTaille())))
+                connexite += 2;
+        //Profondeur
+        if((m_listePieceBoard[posV].getProfondeur() == m_listePieceBoard[posV+4].getProfondeur()) ||
+           (m_listePieceBoard[posV].getProfondeur() == m_listePieceBoard[posV+8].getProfondeur()) ||
+           (m_listePieceBoard[posV].getProfondeur() == m_listePieceBoard[posV+12].getProfondeur()))
                 connexite += 1;
         if(((m_listePieceBoard[posH].getProfondeur() == m_listePieceBoard[posH+1].getProfondeur()) && (m_listePieceBoard[posH+1].getProfondeur() == m_listePieceBoard[posH+2].getProfondeur())) ||
            ((m_listePieceBoard[posH].getProfondeur() == m_listePieceBoard[posH+1].getProfondeur()) && (m_listePieceBoard[posH+1].getProfondeur() == m_listePieceBoard[posH+3].getProfondeur())) ||
@@ -297,6 +380,67 @@ bool board::isQuarto()
 
 bool board::isDraw()
 {
-    if(m_listePieceJouable.size()==0) return true;
+    if(m_listePieceJouable.size()==0 && isQuarto() == false) return true;
     else return false;
+}
+
+void initType(board& myBoard)
+{
+    int config = 0;
+    do
+    {
+        std::cout<<"Voulez-vous utiliser la version console (1) ou SFML(2) ?"<<std::endl;
+        std::cin>>config;
+        if((config != 1 && config != 2) || std::cin.fail())
+        {
+            std::cout<<"Veuillez rentrer le numero lie a la configuration voulue :"<<std::endl<<"1) Console"<<std::endl<<"2) SFML"<<std::endl;
+            std::cin.clear();
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        }
+    }while((config != 1 && config != 2) || std::cin.fail());
+    typeUtils type = (typeUtils) config;
+    myBoard.setType(type);
+    system("cls");
+}
+
+void initJoueur(board& myBoard)
+{
+    joueur j1, j2;
+    int indJ;
+    do
+    {
+        std::cout<<"Joueur 1 :"<<std::endl<<"1) Humain"<<std::endl<<"2) IA Facile"<<std::endl;
+        std::cin>>indJ;
+        if((indJ != 1 && indJ != 2) || std::cin.fail())
+        {
+            std::cout<<"Veuillez rentrer le numero lie a la configuration voulue :"<<std::endl<<"1) Humain"<<std::endl<<"2) IA Facile"<<std::endl;
+            std::cin.clear();
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        }
+    }while((indJ != 1 && indJ != 2) || std::cin.fail());
+    j1 = (joueur) indJ;
+    do
+    {
+        std::cout<<"Joueur 2 :"<<std::endl<<"1) Humain"<<std::endl<<"2) IA Facile"<<std::endl;
+        std::cin>>indJ;
+        if((indJ != 1 && indJ != 2) || std::cin.fail())
+        {
+            std::cout<<"Veuillez rentrer le numero lie a la configuration voulue :"<<std::endl<<"1) Humain"<<std::endl<<"2) IA Facile"<<std::endl;
+            std::cin.clear();
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        }
+    }while((indJ != 1 && indJ != 2) || std::cin.fail());
+    j2 = (joueur) indJ;
+    myBoard.ajouterListeJoueur(j1,0);
+    myBoard.ajouterListeJoueur(j2,1);
+    myBoard.setJoueurActuel(1);
+    myBoard.setJoueur(j1);
+    system("cls");
+    if(j1 != humain && j2 != humain) std::cout<<"Faites bouger votre souris pour faire jouer l'ordinateur"<<std::endl;
+}
+
+void init(board& myBoard)
+{
+    initType(myBoard);
+    initJoueur(myBoard);
 }

@@ -1,26 +1,16 @@
 #include "general.h"
 using namespace std;
 
-enum typeUtils {Console=1, SFML};
+
 
 int main()
 {
-    cout<<"Voulez-vous utiliser la version console (1) ou SFML(2) ?"<<endl;
-    int config;
-    cin>>config;
-    typeUtils type = (typeUtils) config;
-    system("cls");
     srand(time(NULL));
-
     board monPlateau = board();
-    joueur j1 = humain, j2 = facile;
-    monPlateau.ajouterListeJoueur(j1,0);
-    monPlateau.ajouterListeJoueur(j2,1);
-    monPlateau.setJoueurActuel(1);
-    monPlateau.setJoueur(humain);
+    init(monPlateau);
 
 //Pour jouer dans de bonnes condition il faut une fenetre de largeur au moins 90 et hauteur 50
-    if(type == Console)
+    if(monPlateau.getType() == Console)
     {
         AffichageConsole affichConsole;
         ControleurConsole controlConsole;
@@ -78,7 +68,7 @@ int main()
         }
     }
 
-    else if(type == SFML)
+    else if(monPlateau.getType() == SFML)
     {
         AffichageSFML affich;
         ControleurSFML control;
