@@ -31,7 +31,9 @@ class board
         std::vector<Piece> getListePieceBoard();
         void setListePieceBoard(Piece, int);
 
-        std::list<int> genererPositionPossible(Piece pieceDonnee);
+        std::list<int> genererNextCoup();
+
+        int getConnexite(int pos);
 
         std::vector<Piece> getListePieceJouable();
         void eraseFromJouable(int);

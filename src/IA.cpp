@@ -1,4 +1,4 @@
-#include "IA.h"
+#include "general.h"
 
 IA::IA() : m_level(0)
 {
@@ -83,6 +83,9 @@ Piece IA::calcDonner(board& myBoard)
     return pieceADonner;
 }
 
+
+
+
 int IA::evalue(board myBoard)
 {
     int score = 0;
@@ -91,4 +94,17 @@ int IA::evalue(board myBoard)
         if(myBoard.getListePieceBoard()[i] != Piece()) score++;
     }
     return score;
+}
+
+
+int minimax(board &myBoard, int depth, bool maxingPlayer)
+{
+    std::list<int> listeCoup = myBoard.genererNextCoup();
+    IA ordi = IA();
+    if(depth == 0 || myBoard.isQuarto() || myBoard.isDraw()) return ordi.evalue(myBoard);
+    if(maxingPlayer)
+    {
+
+    }
+
 }

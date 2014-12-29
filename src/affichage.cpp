@@ -102,44 +102,44 @@ void AffichageSFML::drawBoard(board& monPlateau)
     std::vector<sf::Sprite> listeSpritePiece;
     for(size_t i = 0; i<monPlateau.getListePieceJouable().size(); i++)
     {
-        if(convertPieceToString(monPlateau.getListePieceJouable()[i]) == "NoirPetitCarrePlein") listeSpritePiece.push_back(NoirPetitCarrePleinSprite);
-        else if(convertPieceToString(monPlateau.getListePieceJouable()[i]) == "NoirPetitCarreCreux") listeSpritePiece.push_back(NoirPetitCarreCreuxSprite);
-        else if(convertPieceToString(monPlateau.getListePieceJouable()[i]) == "NoirPetitRondPlein") listeSpritePiece.push_back(NoirPetitRondPleinSprite);
-        else if(convertPieceToString(monPlateau.getListePieceJouable()[i]) == "NoirPetitRondCreux") listeSpritePiece.push_back(NoirPetitRondCreuxSprite);
-        else if(convertPieceToString(monPlateau.getListePieceJouable()[i]) == "NoirGrandCarrePlein") listeSpritePiece.push_back(NoirGrandCarrePleinSprite);
-        else if(convertPieceToString(monPlateau.getListePieceJouable()[i]) == "NoirGrandCarreCreux") listeSpritePiece.push_back(NoirGrandCarreCreuxSprite);
-        else if(convertPieceToString(monPlateau.getListePieceJouable()[i]) == "NoirGrandRondPlein") listeSpritePiece.push_back(NoirGrandRondPleinSprite);
-        else if(convertPieceToString(monPlateau.getListePieceJouable()[i]) == "NoirGrandRondCreux") listeSpritePiece.push_back(NoirGrandRondCreuxSprite);
+        if(convertPieceToString(monPlateau.getListePieceJouable()[i]) == "NoirPetitCarrePlein ") listeSpritePiece.push_back(NoirPetitCarrePleinSprite);
+        else if(convertPieceToString(monPlateau.getListePieceJouable()[i]) == "NoirPetitCarreCreux ") listeSpritePiece.push_back(NoirPetitCarreCreuxSprite);
+        else if(convertPieceToString(monPlateau.getListePieceJouable()[i]) == "NoirPetitRondPlein  ") listeSpritePiece.push_back(NoirPetitRondPleinSprite);
+        else if(convertPieceToString(monPlateau.getListePieceJouable()[i]) == "NoirPetitRondCreux  ") listeSpritePiece.push_back(NoirPetitRondCreuxSprite);
+        else if(convertPieceToString(monPlateau.getListePieceJouable()[i]) == "NoirGrandCarrePlein ") listeSpritePiece.push_back(NoirGrandCarrePleinSprite);
+        else if(convertPieceToString(monPlateau.getListePieceJouable()[i]) == "NoirGrandCarreCreux ") listeSpritePiece.push_back(NoirGrandCarreCreuxSprite);
+        else if(convertPieceToString(monPlateau.getListePieceJouable()[i]) == "NoirGrandRondPlein  ") listeSpritePiece.push_back(NoirGrandRondPleinSprite);
+        else if(convertPieceToString(monPlateau.getListePieceJouable()[i]) == "NoirGrandRondCreux  ") listeSpritePiece.push_back(NoirGrandRondCreuxSprite);
         else if(convertPieceToString(monPlateau.getListePieceJouable()[i]) == "BlancPetitCarrePlein") listeSpritePiece.push_back(BlancPetitCarrePleinSprite);
         else if(convertPieceToString(monPlateau.getListePieceJouable()[i]) == "BlancPetitCarreCreux") listeSpritePiece.push_back(BlancPetitCarreCreuxSprite);
-        else if(convertPieceToString(monPlateau.getListePieceJouable()[i]) == "BlancPetitRondPlein") listeSpritePiece.push_back(BlancPetitRondPleinSprite);
-        else if(convertPieceToString(monPlateau.getListePieceJouable()[i]) == "BlancPetitRondCreux") listeSpritePiece.push_back(BlancPetitRondCreuxSprite);
+        else if(convertPieceToString(monPlateau.getListePieceJouable()[i]) == "BlancPetitRondPlein ") listeSpritePiece.push_back(BlancPetitRondPleinSprite);
+        else if(convertPieceToString(monPlateau.getListePieceJouable()[i]) == "BlancPetitRondCreux ") listeSpritePiece.push_back(BlancPetitRondCreuxSprite);
         else if(convertPieceToString(monPlateau.getListePieceJouable()[i]) == "BlancGrandCarrePlein") listeSpritePiece.push_back(BlancGrandCarrePleinSprite);
         else if(convertPieceToString(monPlateau.getListePieceJouable()[i]) == "BlancGrandCarreCreux") listeSpritePiece.push_back(BlancGrandCarreCreuxSprite);
-        else if(convertPieceToString(monPlateau.getListePieceJouable()[i]) == "BlancGrandRondPlein") listeSpritePiece.push_back(BlancGrandRondPleinSprite);
-        else if(convertPieceToString(monPlateau.getListePieceJouable()[i]) == "BlancGrandRondCreux") listeSpritePiece.push_back(BlancGrandRondCreuxSprite);
+        else if(convertPieceToString(monPlateau.getListePieceJouable()[i]) == "BlancGrandRondPlein ") listeSpritePiece.push_back(BlancGrandRondPleinSprite);
+        else if(convertPieceToString(monPlateau.getListePieceJouable()[i]) == "BlancGrandRondCreux ") listeSpritePiece.push_back(BlancGrandRondCreuxSprite);
     }
 
     //Lien entre piece affichée et présence dans le vecteur de piece jouée
     std::vector<sf::Sprite> listeSpritePieceBoard;
     for(size_t i = 0; i<monPlateau.getListePieceBoard().size(); i++)
     {
-        if(convertPieceToString(monPlateau.getListePieceBoard()[i]) == "NoirPetitCarrePlein") listeSpritePieceBoard.push_back(NoirPetitCarrePleinSprite);
-        else if(convertPieceToString(monPlateau.getListePieceBoard()[i]) == "NoirPetitCarreCreux") listeSpritePieceBoard.push_back(NoirPetitCarreCreuxSprite);
-        else if(convertPieceToString(monPlateau.getListePieceBoard()[i]) == "NoirPetitRondPlein") listeSpritePieceBoard.push_back(NoirPetitRondPleinSprite);
-        else if(convertPieceToString(monPlateau.getListePieceBoard()[i]) == "NoirPetitRondCreux") listeSpritePieceBoard.push_back(NoirPetitRondCreuxSprite);
-        else if(convertPieceToString(monPlateau.getListePieceBoard()[i]) == "NoirGrandCarrePlein") listeSpritePieceBoard.push_back(NoirGrandCarrePleinSprite);
-        else if(convertPieceToString(monPlateau.getListePieceBoard()[i]) == "NoirGrandCarreCreux") listeSpritePieceBoard.push_back(NoirGrandCarreCreuxSprite);
-        else if(convertPieceToString(monPlateau.getListePieceBoard()[i]) == "NoirGrandRondPlein") listeSpritePieceBoard.push_back(NoirGrandRondPleinSprite);
-        else if(convertPieceToString(monPlateau.getListePieceBoard()[i]) == "NoirGrandRondCreux") listeSpritePieceBoard.push_back(NoirGrandRondCreuxSprite);
+        if(convertPieceToString(monPlateau.getListePieceBoard()[i]) == "NoirPetitCarrePlein ") listeSpritePieceBoard.push_back(NoirPetitCarrePleinSprite);
+        else if(convertPieceToString(monPlateau.getListePieceBoard()[i]) == "NoirPetitCarreCreux ") listeSpritePieceBoard.push_back(NoirPetitCarreCreuxSprite);
+        else if(convertPieceToString(monPlateau.getListePieceBoard()[i]) == "NoirPetitRondPlein  ") listeSpritePieceBoard.push_back(NoirPetitRondPleinSprite);
+        else if(convertPieceToString(monPlateau.getListePieceBoard()[i]) == "NoirPetitRondCreux  ") listeSpritePieceBoard.push_back(NoirPetitRondCreuxSprite);
+        else if(convertPieceToString(monPlateau.getListePieceBoard()[i]) == "NoirGrandCarrePlein ") listeSpritePieceBoard.push_back(NoirGrandCarrePleinSprite);
+        else if(convertPieceToString(monPlateau.getListePieceBoard()[i]) == "NoirGrandCarreCreux ") listeSpritePieceBoard.push_back(NoirGrandCarreCreuxSprite);
+        else if(convertPieceToString(monPlateau.getListePieceBoard()[i]) == "NoirGrandRondPlein  ") listeSpritePieceBoard.push_back(NoirGrandRondPleinSprite);
+        else if(convertPieceToString(monPlateau.getListePieceBoard()[i]) == "NoirGrandRondCreux  ") listeSpritePieceBoard.push_back(NoirGrandRondCreuxSprite);
         else if(convertPieceToString(monPlateau.getListePieceBoard()[i]) == "BlancPetitCarrePlein") listeSpritePieceBoard.push_back(BlancPetitCarrePleinSprite);
         else if(convertPieceToString(monPlateau.getListePieceBoard()[i]) == "BlancPetitCarreCreux") listeSpritePieceBoard.push_back(BlancPetitCarreCreuxSprite);
-        else if(convertPieceToString(monPlateau.getListePieceBoard()[i]) == "BlancPetitRondPlein") listeSpritePieceBoard.push_back(BlancPetitRondPleinSprite);
-        else if(convertPieceToString(monPlateau.getListePieceBoard()[i]) == "BlancPetitRondCreux") listeSpritePieceBoard.push_back(BlancPetitRondCreuxSprite);
+        else if(convertPieceToString(monPlateau.getListePieceBoard()[i]) == "BlancPetitRondPlein ") listeSpritePieceBoard.push_back(BlancPetitRondPleinSprite);
+        else if(convertPieceToString(monPlateau.getListePieceBoard()[i]) == "BlancPetitRondCreux ") listeSpritePieceBoard.push_back(BlancPetitRondCreuxSprite);
         else if(convertPieceToString(monPlateau.getListePieceBoard()[i]) == "BlancGrandCarrePlein") listeSpritePieceBoard.push_back(BlancGrandCarrePleinSprite);
         else if(convertPieceToString(monPlateau.getListePieceBoard()[i]) == "BlancGrandCarreCreux") listeSpritePieceBoard.push_back(BlancGrandCarreCreuxSprite);
-        else if(convertPieceToString(monPlateau.getListePieceBoard()[i]) == "BlancGrandRondPlein") listeSpritePieceBoard.push_back(BlancGrandRondPleinSprite);
-        else if(convertPieceToString(monPlateau.getListePieceBoard()[i]) == "BlancGrandRondCreux") listeSpritePieceBoard.push_back(BlancGrandRondCreuxSprite);
+        else if(convertPieceToString(monPlateau.getListePieceBoard()[i]) == "BlancGrandRondPlein ") listeSpritePieceBoard.push_back(BlancGrandRondPleinSprite);
+        else if(convertPieceToString(monPlateau.getListePieceBoard()[i]) == "BlancGrandRondCreux ") listeSpritePieceBoard.push_back(BlancGrandRondCreuxSprite);
     }
 
     //Placement des piece sur le board
@@ -167,22 +167,22 @@ void AffichageSFML::drawBoard(board& monPlateau)
 
     //Gestion de la piece selectionnee
     sf::Texture pieceSelec;
-    if(convertPieceToString(monPlateau.getPieceSelectionnee())== "NoirPetitCarrePlein") pieceSelec.loadFromFile("images/NoirPetitCarrePlein.png");
-    else if(convertPieceToString(monPlateau.getPieceSelectionnee())== "NoirPetitCarreCreux") pieceSelec.loadFromFile("images/NoirPetitCarreCreux.png");
-    else if(convertPieceToString(monPlateau.getPieceSelectionnee())== "NoirPetitRondPlein") pieceSelec.loadFromFile("images/NoirPetitRondPlein.png");
-    else if(convertPieceToString(monPlateau.getPieceSelectionnee())== "NoirPetitRondCreux") pieceSelec.loadFromFile("images/NoirPetitRondCreux.png");
-    else if(convertPieceToString(monPlateau.getPieceSelectionnee())== "NoirGrandCarrePlein") pieceSelec.loadFromFile("images/NoirGrandCarrePlein.png");
-    else if(convertPieceToString(monPlateau.getPieceSelectionnee())== "NoirGrandCarreCreux") pieceSelec.loadFromFile("images/NoirGrandCarreCreux.png");
-    else if(convertPieceToString(monPlateau.getPieceSelectionnee())== "NoirGrandRondPlein") pieceSelec.loadFromFile("images/NoirGrandRondPlein.png");
-    else if(convertPieceToString(monPlateau.getPieceSelectionnee())== "NoirGrandRondCreux") pieceSelec.loadFromFile("images/NoirGrandRondCreux.png");
+    if(convertPieceToString(monPlateau.getPieceSelectionnee())== "NoirPetitCarrePlein ") pieceSelec.loadFromFile("images/NoirPetitCarrePlein.png");
+    else if(convertPieceToString(monPlateau.getPieceSelectionnee())== "NoirPetitCarreCreux ") pieceSelec.loadFromFile("images/NoirPetitCarreCreux.png");
+    else if(convertPieceToString(monPlateau.getPieceSelectionnee())== "NoirPetitRondPlein  ") pieceSelec.loadFromFile("images/NoirPetitRondPlein.png");
+    else if(convertPieceToString(monPlateau.getPieceSelectionnee())== "NoirPetitRondCreux  ") pieceSelec.loadFromFile("images/NoirPetitRondCreux.png");
+    else if(convertPieceToString(monPlateau.getPieceSelectionnee())== "NoirGrandCarrePlein ") pieceSelec.loadFromFile("images/NoirGrandCarrePlein.png");
+    else if(convertPieceToString(monPlateau.getPieceSelectionnee())== "NoirGrandCarreCreux ") pieceSelec.loadFromFile("images/NoirGrandCarreCreux.png");
+    else if(convertPieceToString(monPlateau.getPieceSelectionnee())== "NoirGrandRondPlein  ") pieceSelec.loadFromFile("images/NoirGrandRondPlein.png");
+    else if(convertPieceToString(monPlateau.getPieceSelectionnee())== "NoirGrandRondCreux  ") pieceSelec.loadFromFile("images/NoirGrandRondCreux.png");
     else if(convertPieceToString(monPlateau.getPieceSelectionnee())== "BlancPetitCarrePlein") pieceSelec.loadFromFile("images/BlancPetitCarrePlein.png");
     else if(convertPieceToString(monPlateau.getPieceSelectionnee())== "BlancPetitCarreCreux") pieceSelec.loadFromFile("images/BlancPetitCarreCreux.png");
-    else if(convertPieceToString(monPlateau.getPieceSelectionnee())== "BlancPetitRondPlein") pieceSelec.loadFromFile("images/BlancPetitRondPlein.png");
-    else if(convertPieceToString(monPlateau.getPieceSelectionnee())== "BlancPetitRondCreux") pieceSelec.loadFromFile("images/BlancPetitRondCreux.png");
+    else if(convertPieceToString(monPlateau.getPieceSelectionnee())== "BlancPetitRondPlein ") pieceSelec.loadFromFile("images/BlancPetitRondPlein.png");
+    else if(convertPieceToString(monPlateau.getPieceSelectionnee())== "BlancPetitRondCreux ") pieceSelec.loadFromFile("images/BlancPetitRondCreux.png");
     else if(convertPieceToString(monPlateau.getPieceSelectionnee())== "BlancGrandCarrePlein") pieceSelec.loadFromFile("images/BlancGrandCarrePlein.png");
     else if(convertPieceToString(monPlateau.getPieceSelectionnee())== "BlancGrandCarreCreux") pieceSelec.loadFromFile("images/BlancGrandCarreCreux.png");
-    else if(convertPieceToString(monPlateau.getPieceSelectionnee())== "BlancGrandRondPlein") pieceSelec.loadFromFile("images/BlancGrandRondPlein.png");
-    else if(convertPieceToString(monPlateau.getPieceSelectionnee())== "BlancGrandRondCreux") pieceSelec.loadFromFile("images/BlancGrandRondCreux.png");
+    else if(convertPieceToString(monPlateau.getPieceSelectionnee())== "BlancGrandRondPlein ") pieceSelec.loadFromFile("images/BlancGrandRondPlein.png");
+    else if(convertPieceToString(monPlateau.getPieceSelectionnee())== "BlancGrandRondCreux ") pieceSelec.loadFromFile("images/BlancGrandRondCreux.png");
     sf::Sprite pieceSelecSprite(pieceSelec);
     pieceSelecSprite.setPosition(600,500);
 

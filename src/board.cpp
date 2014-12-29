@@ -87,11 +87,62 @@ int board::getSizeBoard()
     return m_sizeBoard;
 }
 
-std::list<int> board::genererPositionPossible(Piece pieceDonnee)
+std::list<int> board::genererNextCoup()
 {
     std::list<int> positionPossible;
-//    for(size_t i = 0; i < m_listePieceBoard)
+    for(size_t i = 0; i < m_listePieceBoard.size(); i++)
+    {
+        if(m_listePieceBoard[i] == Piece()) positionPossible.push_back(i);
+    }
     return positionPossible;
+}
+//int board::getConnexiteCouleur(int position,int pas)
+//{
+
+//}
+int board::getConnexite(int pos)
+{
+    int connexite = 0;
+    //Horizontal
+    int posH = pos%4;
+        //Couleur
+        if((m_listePieceBoard[posH].getCouleur() == m_listePieceBoard[posH+1].getCouleur()) ||
+           (m_listePieceBoard[posH].getCouleur() == m_listePieceBoard[posH+2].getCouleur()) ||
+           (m_listePieceBoard[posH].getCouleur() == m_listePieceBoard[posH+3].getCouleur()))
+                connexite += 1;
+        if(((m_listePieceBoard[posH].getCouleur() == m_listePieceBoard[posH+1].getCouleur()) && (m_listePieceBoard[posH+1].getCouleur() == m_listePieceBoard[posH+2].getCouleur())) ||
+           ((m_listePieceBoard[posH].getCouleur() == m_listePieceBoard[posH+1].getCouleur()) && (m_listePieceBoard[posH+1].getCouleur() == m_listePieceBoard[posH+3].getCouleur())) ||
+           ((m_listePieceBoard[posH].getCouleur() == m_listePieceBoard[posH+2].getCouleur()) && (m_listePieceBoard[posH+2].getCouleur() == m_listePieceBoard[posH+3].getCouleur())))
+                connexite += 2;
+        //Forme
+        if((m_listePieceBoard[posH].getForme() == m_listePieceBoard[posH+1].getForme()) ||
+           (m_listePieceBoard[posH].getForme() == m_listePieceBoard[posH+2].getForme()) ||
+           (m_listePieceBoard[posH].getForme() == m_listePieceBoard[posH+3].getForme()))
+                connexite += 1;
+        if(((m_listePieceBoard[posH].getForme() == m_listePieceBoard[posH+1].getForme()) && (m_listePieceBoard[posH+1].getForme() == m_listePieceBoard[posH+2].getForme())) ||
+           ((m_listePieceBoard[posH].getForme() == m_listePieceBoard[posH+1].getForme()) && (m_listePieceBoard[posH+1].getForme() == m_listePieceBoard[posH+3].getForme())) ||
+           ((m_listePieceBoard[posH].getForme() == m_listePieceBoard[posH+2].getForme()) && (m_listePieceBoard[posH+2].getForme() == m_listePieceBoard[posH+3].getForme())))
+                connexite += 2;
+        //Taille
+        if((m_listePieceBoard[posH].getTaille() == m_listePieceBoard[posH+1].getTaille()) ||
+           (m_listePieceBoard[posH].getTaille() == m_listePieceBoard[posH+2].getTaille()) ||
+           (m_listePieceBoard[posH].getTaille() == m_listePieceBoard[posH+3].getTaille()))
+                connexite += 1;
+        if(((m_listePieceBoard[posH].getTaille() == m_listePieceBoard[posH+1].getTaille()) && (m_listePieceBoard[posH+1].getTaille() == m_listePieceBoard[posH+2].getTaille())) ||
+           ((m_listePieceBoard[posH].getTaille() == m_listePieceBoard[posH+1].getTaille()) && (m_listePieceBoard[posH+1].getTaille() == m_listePieceBoard[posH+3].getTaille())) ||
+           ((m_listePieceBoard[posH].getTaille() == m_listePieceBoard[posH+2].getTaille()) && (m_listePieceBoard[posH+2].getTaille() == m_listePieceBoard[posH+3].getTaille())))
+                connexite += 2;
+        //Profondeur
+        if((m_listePieceBoard[posH].getProfondeur() == m_listePieceBoard[posH+1].getProfondeur()) ||
+           (m_listePieceBoard[posH].getProfondeur() == m_listePieceBoard[posH+2].getProfondeur()) ||
+           (m_listePieceBoard[posH].getProfondeur() == m_listePieceBoard[posH+3].getProfondeur()))
+                connexite += 1;
+        if(((m_listePieceBoard[posH].getProfondeur() == m_listePieceBoard[posH+1].getProfondeur()) && (m_listePieceBoard[posH+1].getProfondeur() == m_listePieceBoard[posH+2].getProfondeur())) ||
+           ((m_listePieceBoard[posH].getProfondeur() == m_listePieceBoard[posH+1].getProfondeur()) && (m_listePieceBoard[posH+1].getProfondeur() == m_listePieceBoard[posH+3].getProfondeur())) ||
+           ((m_listePieceBoard[posH].getProfondeur() == m_listePieceBoard[posH+2].getProfondeur()) && (m_listePieceBoard[posH+2].getProfondeur() == m_listePieceBoard[posH+3].getProfondeur())))
+                connexite += 2;
+
+    return connexite;
 }
 
 //Renvoie le vecteur des pièces jouables

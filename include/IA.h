@@ -23,8 +23,9 @@ class IA
         int calcMax(board, int);
 
         //Fonction qui evalue le jeu
-        int calculScore(int, int);
         int evalue(board);
+        int minimax(board &myBoard, int depth, bool maxingPlayer);
+
     protected:
         int m_level;
     private:
