@@ -1,6 +1,5 @@
 #include "general.h"
-#include "Piece.h"
-#include <cmath>
+
 
 using namespace std;
 
@@ -139,7 +138,10 @@ int board::getConnexiteCouleur(int pos)
         ((m_listePieceBoard[posV].getCouleur() == m_listePieceBoard[posV+4].getCouleur()) && (m_listePieceBoard[posV].getCouleur() == m_listePieceBoard[posV+12].getCouleur())) ||
         ((m_listePieceBoard[posV].getCouleur() == m_listePieceBoard[posV+8].getCouleur()) && (m_listePieceBoard[posV].getCouleur() == m_listePieceBoard[posV+12].getCouleur())) ||
         ((m_listePieceBoard[posV+4].getCouleur() == m_listePieceBoard[posV+8].getCouleur()) && (m_listePieceBoard[posV+4].getCouleur() == m_listePieceBoard[posV+12].getCouleur())))
-                connexite += 2;
+            connexite += 2;
+
+    //On regarde si on est sur une diagonale
+    if(pos%5 == 0);
 
     return connexite;
 
@@ -149,15 +151,6 @@ int board::getConnexite(int pos)
     int connexite = 0;
     //Horizontal
     int posH = pos%4;
-        //Couleur
-        if((m_listePieceBoard[posH].getCouleur() == m_listePieceBoard[posH+1].getCouleur()) ||
-           (m_listePieceBoard[posH].getCouleur() == m_listePieceBoard[posH+2].getCouleur()) ||
-           (m_listePieceBoard[posH].getCouleur() == m_listePieceBoard[posH+3].getCouleur()))
-                connexite += 1;
-        if(((m_listePieceBoard[posH].getCouleur() == m_listePieceBoard[posH+1].getCouleur()) && (m_listePieceBoard[posH+1].getCouleur() == m_listePieceBoard[posH+2].getCouleur())) ||
-           ((m_listePieceBoard[posH].getCouleur() == m_listePieceBoard[posH+1].getCouleur()) && (m_listePieceBoard[posH+1].getCouleur() == m_listePieceBoard[posH+3].getCouleur())) ||
-           ((m_listePieceBoard[posH].getCouleur() == m_listePieceBoard[posH+2].getCouleur()) && (m_listePieceBoard[posH+2].getCouleur() == m_listePieceBoard[posH+3].getCouleur())))
-                connexite += 2;
         //Forme
         if((m_listePieceBoard[posH].getForme() == m_listePieceBoard[posH+1].getForme()) ||
            (m_listePieceBoard[posH].getForme() == m_listePieceBoard[posH+2].getForme()) ||
@@ -188,15 +181,6 @@ int board::getConnexite(int pos)
 
     //Vertical
     int posV = pos/4;
-        //Couleur
-        if((m_listePieceBoard[posV].getCouleur() == m_listePieceBoard[posV+4].getCouleur()) ||
-           (m_listePieceBoard[posV].getCouleur() == m_listePieceBoard[posV+8].getCouleur()) ||
-           (m_listePieceBoard[posV].getCouleur() == m_listePieceBoard[posV+12].getCouleur()))
-                connexite += 1;
-        if(((m_listePieceBoard[posV].getCouleur() == m_listePieceBoard[posV+4].getCouleur()) && (m_listePieceBoard[posV+4].getCouleur() == m_listePieceBoard[posV+8].getCouleur())) ||
-           ((m_listePieceBoard[posV].getCouleur() == m_listePieceBoard[posV+8].getCouleur()) && (m_listePieceBoard[posV+4].getCouleur() == m_listePieceBoard[posV+12].getCouleur())) ||
-           ((m_listePieceBoard[posV].getCouleur() == m_listePieceBoard[posV+12].getCouleur()) && (m_listePieceBoard[posV+8].getCouleur() == m_listePieceBoard[posV+12].getCouleur())))
-                connexite += 2;
         //Forme
         if((m_listePieceBoard[posV].getForme() == m_listePieceBoard[posV+1].getForme()) ||
            (m_listePieceBoard[posV].getForme() == m_listePieceBoard[posV+2].getForme()) ||
@@ -405,8 +389,8 @@ void initType(board& myBoard)
 
 void initJoueur(board& myBoard)
 {
-    joueur j1, j2;
-    int indJ;
+    joueur j1 = (joueur) 0, j2 = (joueur) 0;
+    int indJ = 0;
     do
     {
         std::cout<<"Joueur 1 :"<<std::endl<<"1) Humain"<<std::endl<<"2) IA Facile"<<std::endl;

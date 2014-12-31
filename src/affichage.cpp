@@ -6,7 +6,6 @@ void AffichageConsole::drawBoard(board &monPlateau )
 {
     for (size_t i =0; i<monPlateau.getListePieceBoard().size(); i++)
     {
-       // cout<<"\n"<<"i = "<<i<<"\n";
         if(i%4==0) cout<<"\n+-----------------------------------------------------------------------------------+\n";
         if(i%4==0) cout<<"|";
         afficherPiece(monPlateau.getListePieceBoard()[i]);
@@ -44,7 +43,6 @@ void AffichageConsole::afficherPieceBoard(board monPlateau )
 {
     for (size_t i =0; i<monPlateau.getListePieceBoard().size(); i++)
     {
-       // cout<<"\n"<<"i = "<<i<<"\n";
         if(i%4==0) cout<<"\n+---------------------------------------------------------------------------------------+\n";
         if(i%4==0) cout<<"|";
         afficherPiece(monPlateau.getListePieceBoard()[i]);
@@ -74,8 +72,7 @@ void AffichageSFML::drawBoard(board& monPlateau)
     BlancPetitCarrePlein, BlancPetitCarreCreux, BlancPetitRondPlein, BlancPetitRondCreux,
     BlancGrandCarrePlein, BlancGrandCarreCreux, BlancGrandRondPlein, BlancGrandRondCreux;
 
-
-
+    //Chargement des images de la grille et du fond
     if(grille.loadFromFile("images/Grille.png") != true || fond.loadFromFile("images/fond.png") != true)
         return;
 
@@ -186,9 +183,11 @@ void AffichageSFML::drawBoard(board& monPlateau)
     sf::Sprite pieceSelecSprite(pieceSelec);
     pieceSelecSprite.setPosition(600,500);
 
+    //Gestion des differents textes affichés à l'écran
     sf::Text quarto, draw, restart,joueurText, joueurText2, pieceSelecText, gagnant;
     sf::Font font;
-    //Si quarto :
+
+    //Si quarto
     font.loadFromFile("Font/Arial.ttf");
     quarto.setString("Quarto !");
     quarto.setCharacterSize(72);
@@ -196,6 +195,7 @@ void AffichageSFML::drawBoard(board& monPlateau)
     quarto.setFont(font);
     quarto.setColor(sf::Color::Red);
     quarto.setPosition(270,100);
+
     //Si match nul
     draw.setString("Match Nul !");
     draw.setCharacterSize(72);
@@ -203,6 +203,7 @@ void AffichageSFML::drawBoard(board& monPlateau)
     draw.setFont(font);
     draw.setColor(sf::Color::Red);
     draw.setPosition(250,100);
+
     //Gestion affichage reset
     restart.setString("Appuyez sur une touche pour rejouer !");
     restart.setCharacterSize(28);
@@ -238,12 +239,14 @@ void AffichageSFML::drawBoard(board& monPlateau)
     gagnant.setFont(font);
     gagnant.setColor(sf::Color::Red);
     gagnant.setPosition(655,400);
+
     //Piece selectionnee
     pieceSelecText.setCharacterSize(20);
     pieceSelecText.setFont(font);
     pieceSelecText.setColor(sf::Color::Black);
     pieceSelecText.setPosition(525,450);
 
+    //Affichages des sprites et textes
     m_mainWindow.clear();
     m_mainWindow.draw(fondSprite);
     m_mainWindow.draw(grilleSprite);
@@ -273,9 +276,9 @@ void AffichageSFML::drawBoard(board& monPlateau)
     }
     if(monPlateau.isQuarto())
     {
+        m_mainWindow.draw(gagnant);
         m_mainWindow.draw(quarto);
         m_mainWindow.draw(restart);
-        m_mainWindow.draw(gagnant);
     }
     if(monPlateau.isDraw())
     {

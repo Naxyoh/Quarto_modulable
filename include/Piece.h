@@ -25,10 +25,10 @@ class Piece
 		profondeur getProfondeur();
 
     protected:
-        couleur m_couleur;
-		taille m_taille;
-		forme m_forme;
-		profondeur m_profondeur;
+        couleur m_couleur; // couleur d'une piece
+		taille m_taille; // taille d'une piece
+		forme m_forme; // forme d'une piece
+		profondeur m_profondeur; // profondeur d'une piece
     private:
 };
 

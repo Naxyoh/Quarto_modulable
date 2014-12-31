@@ -2,34 +2,34 @@
 
 void ControleurConsole::selectionnerPiece(board &myBoard)
 {
-    if(myBoard.isDraw() != true && myBoard.isQuarto() != true)
+    if(myBoard.isDraw() != true && myBoard.isQuarto() != true) // on verifie que le jeu n'est pas fini
     {
-        if(myBoard.getJoueur() == humain)
+        if(myBoard.getJoueur() == humain) // si le joueur actuel est un joueur humain
         {
             int position = -1;
+            //Rentre le numero de la piece qu'il veut donner
             do
             {
-                std::cout<<std::endl<<"Rentrer le numero de la piece que vous souhaitez donner (Veuillez rentrer un numero entre 1 et 16)\n";
+                std::cout<<std::endl<<"Rentrer le numero de la piece que vous souhaitez donner (Veuillez rentrer un numero entre 1 et "<<myBoard.getListePieceJouable().size()<<")\n";
                 std::cin>>position;
-                if(position<1 || position>16 || std::cin.fail())
+                if(position<1 || position>myBoard.getListePieceJouable().size() || std::cin.fail())
                 {
                     std::cout<<"Numero de piece invalide\n";
                     std::cin.clear();
                     std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); //Pour eviter que ca plante si on rentre un char
                 }
             }
-            while(position<1 || position>16 || std::cin.fail());
+            while(position<1 || position>myBoard.getListePieceJouable().size() || std::cin.fail());
 
             Piece pieceSelectionne = myBoard.getListePieceJouable()[position-1];
             std::cout<<"Vous avez selectionne "<<convertPieceToString(pieceSelectionne)<<std::endl;
             myBoard.setPieceSelectionnee(pieceSelectionne);
         }
-        else if (myBoard.getJoueur() == facile)
+        else if (myBoard.getJoueur() == facile) // Si le joueur actuel est une IA facile
         {
-            std::cout<<"IA"<<std::endl;
-            IA ordi = IA();
-            ordi.setLevel(0);
-            myBoard.setPieceSelectionnee(ordi.calcDonner(myBoard));
+            IA ordi = IA(); // Instanciation de l'IA
+            ordi.setLevel(0); // on set le niveau correspondant à "facile"
+            myBoard.setPieceSelectionnee(ordi.calcDonner(myBoard)); // on utilise la fonction de l'IA pour selectionner une piece
         }
     }
     return;
@@ -37,29 +37,29 @@ void ControleurConsole::selectionnerPiece(board &myBoard)
 
 void ControleurConsole::jouerPiece(board &myBoard, Piece pieceAJouer)
 {
-    if(myBoard.isDraw() != true && myBoard.isQuarto() != true)
+    if(myBoard.isDraw() != true && myBoard.isQuarto() != true) //on verifie que le jeu n'est pas fini
     {
-        if(myBoard.getJoueur() == humain)
+        if(myBoard.getJoueur() == humain) // si le joueur est humain
         {
-        int pos = -1;
-        do
-        {
-            std::cout<<"Quelle position ? (Veuillez rentrer une position entre 1 et 16)\n";
-            std::cin>>pos;
-            if(pos<1 || pos>16 || (myBoard.getListePieceBoard()[pos-1] != Piece())) std::cout<<"Position invalide\n";
-        }
-        while(pos<1 || pos>16 || (myBoard.getListePieceBoard()[pos-1] != Piece()));
+            int pos = -1;
+            //Il rentre la position à laquelle il veut jouer
+            do
+            {
+                std::cout<<"Quelle position ? (Veuillez rentrer une position entre 1 et 16)\n";
+                std::cin>>pos;
+                if(pos<1 || pos>16 || (myBoard.getListePieceBoard()[pos-1] != Piece())) std::cout<<"Position invalide\n";
+            }
+            while(pos<1 || pos>16 || (myBoard.getListePieceBoard()[pos-1] != Piece()));
 
-        myBoard.setListePieceBoard(pieceAJouer, pos-1);
-        myBoard.eraseFromJouable(pos-1);
-    }
-    else if(myBoard.getJoueur() == facile)
-    {
-        std::cout<<"IA"<<std::endl;
-        IA ordi = IA();
-        ordi.setLevel(0);
-        ordi.calcJoue(myBoard, pieceAJouer);
-    }
+            myBoard.setListePieceBoard(pieceAJouer, pos-1);
+            myBoard.eraseFromJouable(pos-1);
+        }
+        else if(myBoard.getJoueur() == facile) // si le joueur est une IA
+        {
+            IA ordi = IA();
+            ordi.setLevel(0);
+            ordi.calcJoue(myBoard, pieceAJouer); // on utilise la fonction de l'IA pour jouer une piece
+        }
     }
     return;
 }
@@ -67,26 +67,27 @@ void ControleurConsole::jouerPiece(board &myBoard, Piece pieceAJouer)
 void ControleurConsole::restart(board& myBoard)
 {
     system("cls");
-    std::vector<joueur> liste;
-    liste = myBoard.getListeJoueur();
-    myBoard = board();
+    std::vector<joueur> liste; // création d'une nouvelle liste
+    liste = myBoard.getListeJoueur(); // on l'initialise avec la liste actuelle de joueur
+    myBoard = board(); // on instancie un nouveau plateau
     myBoard.setJoueur(liste[0]);
     myBoard.setJoueurActuel(1);
-    myBoard.setListeJoueur(liste);
+    myBoard.setListeJoueur(liste); // et on initialise les différents champs
 }
 
 void ControleurSFML::selectionnerPiece(board &myBoard)
 {
-    if(myBoard.isDraw() != true && myBoard.isQuarto() != true)
+    if(myBoard.isDraw() != true && myBoard.isQuarto() != true) // on verifie que le jeu n'est pas fini
     {
-        if(myBoard.getJoueur() == humain)
+        if(myBoard.getJoueur() == humain) //si le joueur est humain
         {
             int position = -1;
-            if (m_event.type == sf::Event::MouseButtonPressed)
+            if (m_event.type == sf::Event::MouseButtonPressed) //si l'evenement en cours est un bouton de souris appuyé
             {
                 sf::Mouse::Button button = m_event.mouseButton.button;
-                if (button == sf::Mouse::Left)
+                if (button == sf::Mouse::Left) // et si c'est le bouton gauche
                 {
+                    //On regarde la position du clique de la souris
                     if(m_event.mouseButton.x>110 && m_event.mouseButton.x<650 && m_event.mouseButton.y >20 && m_event.mouseButton.y < 170 && myBoard.getPieceSelectionnee() == Piece() )
                     {
                         if (m_event.mouseButton.y < 80 && m_event.mouseButton.y > 20)
@@ -128,7 +129,7 @@ void ControleurSFML::selectionnerPiece(board &myBoard)
             ordi.setLevel(0);
             myBoard.setPieceSelectionnee(ordi.calcDonner(myBoard));
         }
-        myBoard.changementJoueur();
+        myBoard.changementJoueur(); // apres avoir joué une piece on change de joueur
     }
     return;
 }
@@ -144,7 +145,7 @@ void ControleurSFML::jouerPiece(board& myBoard, Piece pieceAJouer)
             if (m_event.type == sf::Event::MouseButtonPressed)
             {
                 sf::Mouse::Button button = m_event.mouseButton.button;
-
+                //Meme principe que pour avoir la postion dans la fonction de selection d'une piece
                 if (button == sf::Mouse::Left)
                 {
                     if(myBoard.getPieceSelectionnee() != Piece() && (m_event.mouseButton.y > 230 && m_event.mouseButton.y < 550) && (m_event.mouseButton.x > 160 && m_event.mouseButton.x < 480))
@@ -184,11 +185,11 @@ void ControleurSFML::jouerPiece(board& myBoard, Piece pieceAJouer)
 
             if(position == -1 || pieceAJouer == Piece() || myBoard.getListePieceBoard()[position] != Piece())
             {
-                std::cout<<"position wrong ou piece vide"<<std::endl;
                 return;
             }
             myBoard.setListePieceBoard(pieceAJouer, position);
             myBoard.setPieceSelectionnee(Piece());
+            //On recherche la position de la piece dans le vecteur de piece jouable pour l'en enlever
             int indicePiece = -1;
             for(size_t indicePieceTmp = 0; indicePieceTmp<myBoard.getListePieceJouable().size(); indicePieceTmp++)
             {
@@ -200,7 +201,6 @@ void ControleurSFML::jouerPiece(board& myBoard, Piece pieceAJouer)
 
         else if(myBoard.getJoueur() == facile)
         {
-//            std::cout<<"IA"<<std::endl;
             IA ordi = IA();
             ordi.setLevel(0);
             ordi.calcJoue(myBoard, pieceAJouer);
@@ -211,7 +211,7 @@ void ControleurSFML::jouerPiece(board& myBoard, Piece pieceAJouer)
 
 void ControleurSFML::restart(board& myBoard)
 {
-    if(myBoard.isDraw() || myBoard.isQuarto())
+    if(myBoard.isDraw() || myBoard.isQuarto()) // Si on a atteint la fin du jeu on le réinitialise
     {
         std::vector<joueur> liste;
         liste = myBoard.getListeJoueur();

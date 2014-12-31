@@ -27,10 +27,8 @@ class IA
         int minimax(board &myBoard, int depth, bool maxingPlayer);
 
     protected:
-        int m_level;
+        int m_level; // Niveau de l'IA
     private:
 };
-
-
 
 #endif // IA_H

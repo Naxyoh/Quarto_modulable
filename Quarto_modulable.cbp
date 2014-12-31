@@ -45,7 +45,7 @@
 			<Add option="-fexceptions" />
 			<Add option="-DSFML_STATIC" />
 			<Add directory="C:/SFML-2.1/include" />
-			<Add directory="D:/Documents/GitHub/Quarto_modulable/include" />
+			<Add directory="C:/Users/Nax/Documents/GitHub/Quarto_modulable/include" />
 		</Compiler>
 		<Linker>
 			<Add directory="C:/SFML-2.1/lib" />
